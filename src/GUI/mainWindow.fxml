@@ -1,145 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
+<?import java.lang.String?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainWindowController">
     <children>
-      <VBox fx:id="mainVBox" layoutX="63.0" layoutY="70.0" prefHeight="504.0" prefWidth="600.0">
-         <children>
-              <VBox fx:id="stepOneVBox" prefHeight="48.0" prefWidth="287.0">
-                  <children>
-                      <HBox>
-                          <children>
-                              <Label text="1">
-                                  <font>
-                                      <Font size="36.0" />
-                                  </font>
-                              </Label>
-                              <Label alignment="TOP_RIGHT" contentDisplay="TOP" graphicTextGap="0.0" layoutY="3.5" text="Podaj plik">
-                                  <font>
-                                      <Font size="28.0" />
-                                  </font>
-                                  <HBox.margin>
-                                      <Insets top="3.5" />
-                                  </HBox.margin>
-                                  <opaqueInsets>
-                                      <Insets />
-                                  </opaqueInsets>
-                              </Label>
-                          </children>
-                      </HBox>
-                      <HBox prefHeight="0.0" prefWidth="100.0">
-                          <children>
-                              <TextField fx:id="filePathTextField" prefHeight="37.0" prefWidth="199.0" promptText="Nie wybrano pliku">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </TextField>
-                              <Button fx:id="savePathButton" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="37.0" prefWidth="86.0" text="Załącz">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </Button>
-                          </children>
-                      </HBox>
-                  </children>
-              </VBox>
-              <VBox fx:id="stepTwoVBox" opacity="0.0" prefHeight="53.0" prefWidth="441.0">
-                  <children>
-                      <HBox prefHeight="33.0" prefWidth="441.0">
-                          <children>
-                              <Label text="2">
-                                  <font>
-                                      <Font size="36.0" />
-                                  </font>
-                              </Label>
-                              <Label text="Wybierz algorytm">
-                                  <font>
-                                      <Font size="28.0" />
-                                  </font>
-                                  <HBox.margin>
-                                      <Insets top="3.5" />
-                                  </HBox.margin>
-                              </Label>
-                          </children>
-                      </HBox>
-                      <HBox prefHeight="25.0" prefWidth="444.0">
-                          <children>
-                              <ChoiceBox prefHeight="25.0" prefWidth="287.0" value="Algorytm:">
-                                  <items>
-                                      <FXCollections fx:factory="observableArrayList">
-                                          <String fx:value="AES w trybie ECB" />
-                                          <String fx:value="AES w trybie CBC" />
-                                          <String fx:value="RSA jakaś" />
-                                      </FXCollections>
-                                  </items>
-                              </ChoiceBox>
-                          </children>
-                      </HBox>
-                  </children>
-              </VBox>
-            <VBox fx:id="stepThreeVBox" opacity="0.0" prefHeight="97.0" prefWidth="304.0">
-               <children>
-                  <HBox prefHeight="97.0" prefWidth="327.0">
-                     <children>
-                        <Label text="3">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label text="Dodatkowe opcje">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="3.5" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox fx:id="stepFourVBox" opacity="0.0" prefHeight="78.0" prefWidth="287.0">
-               <children>
-                  <HBox prefHeight="33.0" prefWidth="287.0">
-                     <children>
-                        <Label text="4">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label text="Wybierz miejsce">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="3.5" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <TextField promptText="Wybierz folder docelowy">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                        <Button mnemonicParsing="false" onAction="#openDirectoryChooser" prefHeight="37.0" prefWidth="84.0" text="Wybierz">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+        <VBox fx:id="mainVBox" layoutX="63.0" layoutY="70.0" prefHeight="504.0" prefWidth="600.0">
+            <children>
+                <VBox fx:id="stepOneVBox" prefHeight="48.0" prefWidth="287.0">
+                    <children>
+                        <HBox>
+                            <children>
+                                <Label text="1">
+                                    <font>
+                                        <Font size="36.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="TOP_RIGHT" contentDisplay="TOP" graphicTextGap="0.0" layoutY="3.5"
+                                       text="Podaj plik">
+                                    <font>
+                                        <Font size="28.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.5"/>
+                                    </HBox.margin>
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="0.0" prefWidth="100.0">
+                            <children>
+                                <TextField fx:id="filePathTextField" prefHeight="37.0" prefWidth="199.0"
+                                           promptText="Nie wybrano pliku">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </TextField>
+                                <Button fx:id="savePathButton" mnemonicParsing="false" onAction="#openFileChooser"
+                                        prefHeight="37.0" prefWidth="86.0" text="Załącz">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="stepTwoVBox" opacity="0.0" prefHeight="53.0" prefWidth="441.0">
+                    <children>
+                        <HBox prefHeight="33.0" prefWidth="441.0">
+                            <children>
+                                <Label text="2">
+                                    <font>
+                                        <Font size="36.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Wybierz algorytm">
+                                    <font>
+                                        <Font size="28.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.5"/>
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="444.0">
+                            <children>
+                                <ComboBox fx:id="algoComboBox" onAction="#setAlgorithm" prefHeight="25.0"
+                                          prefWidth="285.0" promptText="Algorytm:">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="AES w trybie ECB"/>
+                                            <String fx:value="AES w trybie CBC"/>
+                                            <String fx:value="RSA jakaś"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="stepThreeVBox" opacity="0.0" prefHeight="97.0" prefWidth="304.0">
+                    <children>
+                        <HBox prefHeight="97.0" prefWidth="327.0">
+                            <children>
+                                <Label text="3">
+                                    <font>
+                                        <Font size="36.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Dodatkowe opcje">
+                                    <font>
+                                        <Font size="28.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.5"/>
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="stepFourVBox" prefHeight="78.0" prefWidth="287.0">
+                    <children>
+                        <HBox prefHeight="33.0" prefWidth="287.0">
+                            <children>
+                                <Label text="4">
+                                    <font>
+                                        <Font size="36.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Wybierz miejsce">
+                                    <font>
+                                        <Font size="28.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.5"/>
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="directoryTextField" promptText="Wybierz folder docelowy">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </TextField>
+                                <Button mnemonicParsing="false" onAction="#openDirectoryChooser" prefHeight="37.0"
+                                        prefWidth="84.0" text="Wybierz">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
     </children>
 </Pane>
