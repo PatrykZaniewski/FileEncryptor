@@ -18,13 +18,13 @@ public class MainWindowController {
     @FXML
     private VBox mainVBox;
     @FXML
-    private VBox stepOneVBox;
+    private VBox stepOneEncVBox;
     @FXML
-    private VBox stepTwoVBox;
+    private VBox stepTwoEncVBox;
     @FXML
-    private VBox stepThreeVBox;
+    private VBox stepThreeEncVBox;
     @FXML
-    private VBox stepFourVBox;
+    private VBox stepFourEncVBox;
 
     @FXML
     private Button savePathButton;
@@ -34,6 +34,8 @@ public class MainWindowController {
     private TextField directoryTextField;
     @FXML
     private ComboBox<String> algoComboBox;
+    @FXML
+    private TextField keyInput;
 
     @FXML
     public void openDirectoryChooser() {
@@ -54,7 +56,7 @@ public class MainWindowController {
         if (selectedFile != null) {
             String path = selectedFile.getAbsolutePath();
             filePathTextField.setText(path);
-            animateVBox(stepTwoVBox);
+            animateVBox(stepTwoEncVBox);
         }
     }
 
@@ -62,11 +64,18 @@ public class MainWindowController {
     public void setAlgorithm() {
         String algoName = algoComboBox.getValue();
         System.out.println("Algo: " + algoName);
-        animateVBox(stepThreeVBox);
+        animateVBox(stepThreeEncVBox);
+    }
+
+    @FXML
+    public void setKey() {
+        String key = keyInput.getText();
+        System.out.println("Klucz " + key);
+        animateVBox(stepFourEncVBox);
     }
 
     private void animateVBox(VBox toAnimate) {
-        if (toAnimate.getOpacity() != 1) {
+        if (toAnimate.getOpacity() == 0) {
             FadeTransition ft = new FadeTransition(Duration.millis(1500), toAnimate);
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
