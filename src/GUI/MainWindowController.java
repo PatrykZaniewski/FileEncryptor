@@ -2,6 +2,7 @@ package GUI;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,6 +29,8 @@ public class MainWindowController {
     @FXML
     private Button savePathButton;
     @FXML
+    private Button startEncButton;
+    @FXML
     private TextField filePathTextField;
     @FXML
     private TextField directoryTextField;
@@ -44,6 +47,7 @@ public class MainWindowController {
         if (selectedDirectory != null) {
             String path = selectedDirectory.getAbsolutePath();
             directoryTextField.setText(path);
+            animateNode(startEncButton);
         }
     }
 
@@ -55,7 +59,7 @@ public class MainWindowController {
         if (selectedFile != null) {
             String path = selectedFile.getAbsolutePath();
             filePathTextField.setText(path);
-            animateVBox(stepTwoEncVBox);
+            animateNode(stepTwoEncVBox);
         }
     }
 
@@ -63,14 +67,14 @@ public class MainWindowController {
     public void setAlgorithm() {
         String algoName = algoComboBox.getValue();
         System.out.println("Algo: " + algoName);
-        animateVBox(stepThreeEncVBox);
+        animateNode(stepThreeEncVBox);
     }
 
     @FXML
     public void setKey() {
         String key = keyInput.getText();
         System.out.println("Klucz " + key);
-        animateVBox(stepFourEncVBox);
+        animateNode(stepFourEncVBox);
     }
 
     @FXML
@@ -125,7 +129,7 @@ public class MainWindowController {
         alert.showAndWait();
     }
 
-    private void animateVBox(VBox toAnimate) {
+    private void animateNode(Node toAnimate) {
         if (toAnimate.getOpacity() == 0) {
             FadeTransition ft = new FadeTransition(Duration.millis(1500), toAnimate);
             ft.setFromValue(0.0);

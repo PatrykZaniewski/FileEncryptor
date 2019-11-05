@@ -16,8 +16,9 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="735.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#startEnc" text="Start!"
-                                        AnchorPane.leftAnchor="318.5" AnchorPane.topAnchor="497.0">
+                                <Button fx:id="startEncButton" mnemonicParsing="false" onAction="#startEnc"
+                                        opacity="0.0" text="Start!" AnchorPane.leftAnchor="318.5"
+                                        AnchorPane.topAnchor="497.0">
                                     <font>
                                         <Font size="26.0"/>
                                     </font>
@@ -68,7 +69,7 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepTwoEncVBox" prefHeight="53.0" prefWidth="441.0">
+                                        <VBox fx:id="stepTwoEncVBox" opacity="0.0" prefHeight="53.0" prefWidth="441.0">
                                             <children>
                                                 <HBox prefHeight="33.0" prefWidth="441.0" spacing="5.0">
                                                     <children>
@@ -104,7 +105,8 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepThreeEncVBox" prefHeight="97.0" prefWidth="304.0">
+                                        <VBox fx:id="stepThreeEncVBox" opacity="0.0" prefHeight="97.0"
+                                              prefWidth="304.0">
                                             <children>
                                                 <HBox prefHeight="52.0" prefWidth="500.0" spacing="5.0">
                                                     <children>
@@ -146,7 +148,7 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepFourEncVBox" minWidth="500.0" prefHeight="78.0"
+                                        <VBox fx:id="stepFourEncVBox" minWidth="500.0" opacity="0.0" prefHeight="78.0"
                                               prefWidth="287.0">
                                             <children>
                                                 <HBox prefHeight="33.0" prefWidth="287.0" spacing="5.0">
