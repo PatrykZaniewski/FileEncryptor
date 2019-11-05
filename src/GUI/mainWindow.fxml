@@ -6,7 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainWindowController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="735.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="GUI.MainWindowController">
     <children>
         <TabPane prefHeight="600.0" prefWidth="735.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -14,12 +16,18 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="735.0">
                             <children>
-                                <VBox fx:id="mainVBox" minWidth="500.0" prefHeight="472.0" prefWidth="500.0"
+                                <Button mnemonicParsing="false" onAction="#startEnc" text="Start!"
+                                        AnchorPane.leftAnchor="318.5" AnchorPane.topAnchor="497.0">
+                                    <font>
+                                        <Font size="26.0"/>
+                                    </font>
+                                </Button>
+                                <VBox fx:id="mainVBox" minWidth="500.0" prefHeight="402.0" prefWidth="500.0"
                                       spacing="15.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="75.0">
                                     <children>
                                         <VBox fx:id="stepOneEncVBox" prefHeight="48.0" prefWidth="287.0">
                                             <children>
-                                                <HBox>
+                                                <HBox spacing="5.0">
                                                     <children>
                                                         <Label text="1">
                                                             <font>
@@ -27,7 +35,8 @@
                                                             </font>
                                                         </Label>
                                                         <Label alignment="TOP_RIGHT" contentDisplay="TOP"
-                                                               graphicTextGap="0.0" layoutY="3.5" text="Podaj plik">
+                                                               graphicTextGap="0.0" layoutY="3.5" prefHeight="54.0"
+                                                               prefWidth="122.0" text="Podaj plik">
                                                             <font>
                                                                 <Font size="28.0"/>
                                                             </font>
@@ -59,9 +68,9 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepTwoEncVBox" opacity="0.0" prefHeight="53.0" prefWidth="441.0">
+                                        <VBox fx:id="stepTwoEncVBox" prefHeight="53.0" prefWidth="441.0">
                                             <children>
-                                                <HBox prefHeight="33.0" prefWidth="441.0">
+                                                <HBox prefHeight="33.0" prefWidth="441.0" spacing="5.0">
                                                     <children>
                                                         <Label text="2">
                                                             <font>
@@ -78,10 +87,10 @@
                                                         </Label>
                                                     </children>
                                                 </HBox>
-                                                <HBox prefHeight="25.0" prefWidth="444.0">
+                                                <HBox prefHeight="25.0" prefWidth="414.0">
                                                     <children>
                                                         <ComboBox fx:id="algoComboBox" onAction="#setAlgorithm"
-                                                                  prefHeight="25.0" prefWidth="414.0"
+                                                                  prefHeight="43.0" prefWidth="500.0"
                                                                   promptText="Algorytm:">
                                                             <items>
                                                                 <FXCollections fx:factory="observableArrayList">
@@ -95,10 +104,9 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepThreeEncVBox" opacity="0.0" prefHeight="97.0"
-                                              prefWidth="304.0">
+                                        <VBox fx:id="stepThreeEncVBox" prefHeight="97.0" prefWidth="304.0">
                                             <children>
-                                                <HBox prefHeight="52.0" prefWidth="500.0">
+                                                <HBox prefHeight="52.0" prefWidth="500.0" spacing="5.0">
                                                     <children>
                                                         <Label text="3">
                                                             <font>
@@ -117,7 +125,7 @@
                                                 </HBox>
                                                 <HBox prefHeight="45.0" prefWidth="500.0">
                                                     <children>
-                                                        <HBox maxHeight="37.0" prefHeight="37.0" prefWidth="225.0"
+                                                        <HBox maxHeight="37.0" prefHeight="37.0" prefWidth="499.0"
                                                               spacing="5.0">
                                                             <children>
                                                                 <Label alignment="CENTER" contentDisplay="CENTER"
@@ -127,7 +135,7 @@
                                                                     </font>
                                                                 </Label>
                                                                 <TextField fx:id="keyInput" onKeyTyped="#setKey"
-                                                                           prefHeight="37.0" prefWidth="173.0">
+                                                                           prefHeight="37.0" prefWidth="448.0">
                                                                     <font>
                                                                         <Font size="16.0"/>
                                                                     </font>
@@ -138,10 +146,10 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepFourEncVBox" minWidth="500.0" opacity="0.0" prefHeight="78.0"
+                                        <VBox fx:id="stepFourEncVBox" minWidth="500.0" prefHeight="78.0"
                                               prefWidth="287.0">
                                             <children>
-                                                <HBox prefHeight="33.0" prefWidth="287.0">
+                                                <HBox prefHeight="33.0" prefWidth="287.0" spacing="5.0">
                                                     <children>
                                                         <Label text="4">
                                                             <font>

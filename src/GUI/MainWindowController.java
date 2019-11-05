@@ -2,6 +2,7 @@ package GUI;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -12,13 +13,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class MainWindowController {
 
-    @FXML
-    private VBox mainVBox;
-    @FXML
-    private VBox stepOneEncVBox;
     @FXML
     private VBox stepTwoEncVBox;
     @FXML
@@ -72,6 +71,58 @@ public class MainWindowController {
         String key = keyInput.getText();
         System.out.println("Klucz " + key);
         animateVBox(stepFourEncVBox);
+    }
+
+    @FXML
+    public void startEnc() {
+        //TODO przygotuj odpowiedni szyfr -> osobna klasa
+        String filePath = filePathTextField.getText();
+        String savePath = directoryTextField.getText();
+        String key = keyInput.getText();
+        String algorithm = algoComboBox.getValue();
+        int checkFiles = checkFilePaths(filePath, savePath);
+        if (checkFiles == 1) {
+            showFileError(1);
+            return;
+        } else if (checkFiles == 2) {
+            showFileError(2);
+            return;
+        }
+    }
+
+    private int checkFilePaths(String filePath, String savePath) {
+        Path inputFile = new File(filePath).toPath();
+        Path saveDir = new File(savePath).toPath();
+        if (Files.isWritable(saveDir)) {
+            if (Files.exists(inputFile)) {
+                return 0;
+            } else {
+                return 2;
+            }
+        } else {
+            return 1;
+        }
+    }
+
+    private void showFileError(int code) {
+        String mes;
+        switch (code) {
+            case 1:
+                mes = "Nie można zapisać pliku w podanej lokalizacji";
+                break;
+            case 2:
+                mes = "Podany plik nie istnieje";
+                break;
+            default:
+                mes = "Wystąpił bład";
+                break;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Błąd!");
+        alert.setHeaderText(mes);
+        alert.initOwner(savePathButton.getScene().getWindow());
+        alert.showAndWait();
     }
 
     private void animateVBox(VBox toAnimate) {
