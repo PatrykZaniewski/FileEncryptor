@@ -25,42 +25,48 @@ public class MainWindowController {
     private VBox stepThreeEncVBox;
     @FXML
     private VBox stepFourEncVBox;
+    @FXML
+    private VBox stepTwoDecVBox;
+    @FXML
+    private VBox stepThreeDecVBox;
 
     @FXML
-    private Button savePathButton;
+    private Button savePathButtonEnc;
     @FXML
     private Button startEncButton;
     @FXML
-    private TextField filePathTextField;
+    private Button startDecButton;
     @FXML
-    private TextField directoryTextField;
+    private TextField filePathTextFieldEnc;
+    @FXML
+    private TextField filePathTextFieldDec;
+    @FXML
+    private TextField directoryTextFieldEnc;
+    @FXML
+    private TextField directoryTextFieldDec;
     @FXML
     private ComboBox<String> algoComboBox;
     @FXML
     private TextField keyInput;
 
     @FXML
-    public void openDirectoryChooser() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        Stage mainStage = (Stage) savePathButton.getScene().getWindow();
-        File selectedDirectory = directoryChooser.showDialog(mainStage);
-        if (selectedDirectory != null) {
-            String path = selectedDirectory.getAbsolutePath();
-            directoryTextField.setText(path);
-            animateNode(startEncButton);
-        }
+    public void openDirectoryChooserEnc() {
+        openDirecChooser(directoryTextFieldEnc, startEncButton);
     }
 
     @FXML
-    public void openFileChooser() {
-        FileChooser fileChooser = new FileChooser();
-        Stage mainStage = (Stage) savePathButton.getScene().getWindow();
-        File selectedFile = fileChooser.showOpenDialog(mainStage);
-        if (selectedFile != null) {
-            String path = selectedFile.getAbsolutePath();
-            filePathTextField.setText(path);
-            animateNode(stepTwoEncVBox);
-        }
+    public void openDirectoryChooserDec() {
+        openDirecChooser(directoryTextFieldDec, startDecButton);
+    }
+
+    @FXML
+    public void openFileChooserEnc() {
+        openFileChooser(filePathTextFieldEnc, stepTwoEncVBox);
+    }
+
+    @FXML
+    public void openFileChooserDec() {
+        openFileChooser(filePathTextFieldDec, stepTwoDecVBox);
     }
 
     @FXML
@@ -71,26 +77,31 @@ public class MainWindowController {
     }
 
     @FXML
-    public void setKey() {
-        String key = keyInput.getText();
-        System.out.println("Klucz " + key);
+    public void setKeyEnc() {
         animateNode(stepFourEncVBox);
+    }
+
+    @FXML
+    public void setKeyDec() {
+        animateNode(stepThreeDecVBox);
     }
 
     @FXML
     public void startEnc() {
         //TODO przygotuj odpowiedni szyfr -> osobna klasa
-        String filePath = filePathTextField.getText();
-        String savePath = directoryTextField.getText();
+        String filePath = filePathTextFieldEnc.getText();
+        String savePath = directoryTextFieldEnc.getText();
         String key = keyInput.getText();
         String algorithm = algoComboBox.getValue();
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
-            showFileError(1);
+            showError(1);
             return;
         } else if (checkFiles == 2) {
-            showFileError(2);
+            showError(2);
             return;
+        } else if (key.equals("")) {
+            showError(3);
         }
     }
 
@@ -108,7 +119,7 @@ public class MainWindowController {
         }
     }
 
-    private void showFileError(int code) {
+    private void showError(int code) {
         String mes;
         switch (code) {
             case 1:
@@ -116,6 +127,9 @@ public class MainWindowController {
                 break;
             case 2:
                 mes = "Podany plik nie istnieje";
+                break;
+            case 3:
+                mes = "Podaj klucz, any kontynuować";
                 break;
             default:
                 mes = "Wystąpił bład";
@@ -125,7 +139,7 @@ public class MainWindowController {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Błąd!");
         alert.setHeaderText(mes);
-        alert.initOwner(savePathButton.getScene().getWindow());
+        alert.initOwner(savePathButtonEnc.getScene().getWindow());
         alert.showAndWait();
     }
 
@@ -135,6 +149,29 @@ public class MainWindowController {
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
             ft.play();
+            toAnimate.setDisable(false);
+        }
+    }
+
+    private void openDirecChooser(TextField pathField, Button startButton) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        Stage mainStage = (Stage) savePathButtonEnc.getScene().getWindow();
+        File selectedDirectory = directoryChooser.showDialog(mainStage);
+        if (selectedDirectory != null) {
+            String path = selectedDirectory.getAbsolutePath();
+            pathField.setText(path);
+            animateNode(startButton);
+        }
+    }
+
+    private void openFileChooser(TextField pathField, VBox toAnimate) {
+        FileChooser fileChooser = new FileChooser();
+        Stage mainStage = (Stage) savePathButtonEnc.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(mainStage);
+        if (selectedFile != null) {
+            String path = selectedFile.getAbsolutePath();
+            pathField.setText(path);
+            animateNode(toAnimate);
         }
     }
 }
