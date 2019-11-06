@@ -55,8 +55,18 @@ public class MainWindowController {
     }
 
     @FXML
+    public void openStartButtonEnc() {
+        animateNode(startEncButton);
+    }
+
+    @FXML
     public void openDirectoryChooserDec() {
         openDirecChooser(directoryTextFieldDec, startDecButton);
+    }
+
+    @FXML
+    public void openStartButtonDec() {
+        animateNode(startDecButton);
     }
 
     @FXML
@@ -65,8 +75,18 @@ public class MainWindowController {
     }
 
     @FXML
+    public void openStepTwoEnc() {
+        animateNode(stepTwoEncVBox);
+    }
+
+    @FXML
     public void openFileChooserDec() {
         openFileChooser(filePathTextFieldDec, stepTwoDecVBox);
+    }
+
+    @FXML
+    public void openStepTwoDec() {
+        animateNode(stepTwoDecVBox);
     }
 
     @FXML

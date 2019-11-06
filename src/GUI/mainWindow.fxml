@@ -17,7 +17,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="735.0">
                             <children>
                                 <Button fx:id="startEncButton" disable="true" mnemonicParsing="false"
-                                        onAction="#startEnc" text="Start!" AnchorPane.leftAnchor="318.5"
+                                        onAction="#startEnc" opacity="0.0" text="Start!" AnchorPane.leftAnchor="318.5"
                                         AnchorPane.topAnchor="497.0">
                                     <font>
                                         <Font size="26.0"/>
@@ -52,7 +52,8 @@
                                                 </HBox>
                                                 <HBox prefHeight="0.0" prefWidth="100.0">
                                                     <children>
-                                                        <TextField fx:id="filePathTextFieldEnc" prefHeight="37.0"
+                                                        <TextField fx:id="filePathTextFieldEnc"
+                                                                   onKeyTyped="#openStepTwoEnc" prefHeight="37.0"
                                                                    prefWidth="414.0" promptText="Nie wybrano pliku">
                                                             <font>
                                                                 <Font size="16.0"/>
@@ -69,7 +70,8 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepTwoEncVBox" disable="true" prefHeight="53.0" prefWidth="441.0">
+                                        <VBox fx:id="stepTwoEncVBox" disable="true" opacity="0.0" prefHeight="53.0"
+                                              prefWidth="441.0">
                                             <children>
                                                 <HBox prefHeight="33.0" prefWidth="441.0" spacing="5.0">
                                                     <children>
@@ -105,7 +107,7 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepThreeEncVBox" disable="true" prefHeight="97.0"
+                                        <VBox fx:id="stepThreeEncVBox" disable="true" opacity="0.0" prefHeight="97.0"
                                               prefWidth="304.0">
                                             <children>
                                                 <HBox prefHeight="52.0" prefWidth="500.0" spacing="5.0">
@@ -148,8 +150,8 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepFourEncVBox" disable="true" minWidth="500.0" prefHeight="78.0"
-                                              prefWidth="287.0">
+                                        <VBox fx:id="stepFourEncVBox" disable="true" minWidth="500.0" opacity="0.0"
+                                              prefHeight="78.0" prefWidth="287.0">
                                             <children>
                                                 <HBox prefHeight="33.0" prefWidth="287.0" spacing="5.0">
                                                     <children>
@@ -170,7 +172,8 @@
                                                 </HBox>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
-                                                        <TextField fx:id="directoryTextFieldEnc" prefHeight="37.0"
+                                                        <TextField fx:id="directoryTextFieldEnc"
+                                                                   onKeyTyped="#openStartButtonEnc" prefHeight="37.0"
                                                                    prefWidth="414.0"
                                                                    promptText="Wybierz folder docelowy">
                                                             <font>
@@ -233,7 +236,8 @@
                                                 </HBox>
                                                 <HBox prefHeight="27.0" prefWidth="500.0">
                                                     <children>
-                                                        <TextField fx:id="filePathTextFieldDec" prefHeight="37.0"
+                                                        <TextField fx:id="filePathTextFieldDec"
+                                                                   onKeyTyped="#openStepTwoDec" prefHeight="37.0"
                                                                    prefWidth="414.0" promptText="Nie wybrano pliku">
                                                             <font>
                                                                 <Font size="16.0"/>
@@ -250,7 +254,8 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepTwoDecVBox" disable="true" prefHeight="92.0" prefWidth="500.0">
+                                        <VBox fx:id="stepTwoDecVBox" disable="true" opacity="0.0" prefHeight="92.0"
+                                              prefWidth="500.0">
                                             <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                                                     <children>
@@ -289,7 +294,7 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <VBox fx:id="stepThreeDecVBox" disable="true" prefHeight="92.0"
+                                        <VBox fx:id="stepThreeDecVBox" disable="true" opacity="0.0" prefHeight="92.0"
                                               prefWidth="500.0">
                                             <children>
                                                 <HBox prefHeight="22.0" prefWidth="500.0" spacing="5.0">
@@ -308,7 +313,8 @@
                                                 </HBox>
                                                 <HBox prefHeight="37.0" prefWidth="500.0">
                                                     <children>
-                                                        <TextField fx:id="directoryTextFieldDec" prefHeight="37.0"
+                                                        <TextField fx:id="directoryTextFieldDec"
+                                                                   onKeyTyped="#openStartButtonDec" prefHeight="37.0"
                                                                    prefWidth="414.0"
                                                                    promptText="Wybierz folder docelowy">
                                                             <font>
@@ -328,8 +334,8 @@
                                         </VBox>
                                     </children>
                                 </VBox>
-                                <Button fx:id="startDecButton" disable="true" mnemonicParsing="false" text="Start!"
-                                        AnchorPane.leftAnchor="318.5" AnchorPane.topAnchor="427.0">
+                                <Button fx:id="startDecButton" disable="true" mnemonicParsing="false" opacity="0.0"
+                                        text="Start!" AnchorPane.leftAnchor="318.5" AnchorPane.topAnchor="427.0">
                                     <font>
                                         <Font size="26.0"/>
                                     </font>
