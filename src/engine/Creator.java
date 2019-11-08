@@ -1,6 +1,8 @@
 package engine;
 
 import engine.exceptions.AlgorithmException;
+
+import javax.crypto.Cipher;
 import java.security.Key;
 
 public class Creator implements CipherCreator {
@@ -12,7 +14,7 @@ public class Creator implements CipherCreator {
             case "AES":{
                 switch(mode){
                     case "CBC":
-                        return new AES(mode, key);
+                        return new AES(mode, key, Cipher.ENCRYPT_MODE);
                     default:
                         //TODO suggest more suiting exception type or message
                         throw new AlgorithmException("Not supported mode!");
@@ -25,8 +27,9 @@ public class Creator implements CipherCreator {
 
         }
     }
-    //TODO decryption
+
     public Decryptor createDecryptor(String algorithm, String mode, Key key) throws AlgorithmException{
+        //TODO decryption
         throw new UnsupportedOperationException();
     }
 }
