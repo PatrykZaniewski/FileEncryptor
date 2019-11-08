@@ -99,7 +99,12 @@
                                                                 <FXCollections fx:factory="observableArrayList">
                                                                     <String fx:value="AES w trybie ECB"/>
                                                                     <String fx:value="AES w trybie CBC"/>
-                                                                    <String fx:value="RSA jakaś"/>
+                                                                    <String fx:value="AES w trybie CFB"/>
+                                                                    <String fx:value="DES w trybie ECB"/>
+                                                                    <String fx:value="DES w trybie CBC"/>
+                                                                    <String fx:value="DES w trybie CFB"/>
+                                                                    <String fx:value="ROT13"/>
+                                                                    <String fx:value="RSA"/>
                                                                 </FXCollections>
                                                             </items>
                                                         </ComboBox>

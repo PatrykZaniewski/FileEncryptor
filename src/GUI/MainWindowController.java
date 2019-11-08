@@ -91,8 +91,6 @@ public class MainWindowController {
 
     @FXML
     public void setAlgorithm() {
-        String algoName = algoComboBox.getValue();
-        System.out.println("Algo: " + algoName);
         animateNode(stepThreeEncVBox);
     }
 
@@ -112,17 +110,19 @@ public class MainWindowController {
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
         String key = keyInput.getText();
-        String algorithm = algoComboBox.getValue();
+        int algorithm = algoComboBox.getSelectionModel().getSelectedIndex();
+        System.out.println(algorithm);
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
-            return;
         } else if (checkFiles == 2) {
             showError(2);
-            return;
         } else if (key.equals("")) {
             showError(3);
         }
+
+
+
     }
 
     private int checkFilePaths(String filePath, String savePath) {
