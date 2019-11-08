@@ -1,4 +1,4 @@
-package cipher.exceptions;
+package engine.exceptions;
 
 public class FileSizeException extends Exception{
     public FileSizeException(String message){

@@ -1,4 +1,4 @@
-package cipher.exceptions;
+package engine.exceptions;
 /*
 Throw when unsupported algorithm or mode is passed
  */

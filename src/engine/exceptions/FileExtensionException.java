@@ -1,4 +1,4 @@
-package cipher.exceptions;
+package engine.exceptions;
 /*
 Accept only *.rsa files
  */
