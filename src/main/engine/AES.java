@@ -1,11 +1,10 @@
 package engine;
 
 import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.util.Arrays;
 
 public class AES implements Encryptor, Decryptor {
@@ -27,10 +26,22 @@ public class AES implements Encryptor, Decryptor {
         setKey(key);
         try{
             this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
-            this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            if ("ECB".equals(algorithmMode)) {
+                this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            } else {
+                int ivSize = 16;
+                byte[] iv = new byte[ivSize];
+                SecureRandom random = new SecureRandom();
+                random.nextBytes(iv);
+                IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+                this.cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+                //TODO its highly recommended to pass the IV vector to the user. Otherwise will be XD
+            }
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e){
             //TODO suggest more suiting exception type or message
             throw new IllegalStateException("Unable to create a cipher object.");
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
         }
     }
 

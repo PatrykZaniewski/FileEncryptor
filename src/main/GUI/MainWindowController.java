@@ -120,24 +120,31 @@ public class MainWindowController {
     }
 
     @FXML
-    public void startEnc() throws AlgorithmException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
+    public void startEnc() throws AlgorithmException, NoSuchAlgorithmException{
         //TODO przygotuj odpowiedni szyfr -> osobna klasa
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
-        String key2 = keyInput.getText();
-        int algorithm = algoComboBox.getSelectionModel().getSelectedIndex();
-        System.out.println(algorithm);
+        String key = keyInput.getText();
+        String algorithm = null;
+        String mode = null;
+        if(algoComboBox.getSelectionModel().getSelectedIndex() < 6){
+            String[] splitted= algoComboBox.getValue().split("\\s+");
+            algorithm = splitted[0];
+            mode = splitted[3];
+        }
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
         } else if (checkFiles == 2) {
             showError(2);
-        } else if (key2.equals("")) {
+        } else if (key.equals("")) {
             showError(3);
         }
 
+
+
         Creator creator = new Creator();
-        Encryptor encryptor = creator.createEncryptor("AES", "ECB", "ssshhhhhhhhhhh!!!!");
+        Encryptor encryptor = creator.createEncryptor(algorithm, mode, "ssshhhhhhhhhhh!!!!");
         String test = "howtodoinjava.com";
         System.out.println(Base64.getEncoder().encodeToString(encryptor.encrypt(test.getBytes(StandardCharsets.UTF_8))));
     }
