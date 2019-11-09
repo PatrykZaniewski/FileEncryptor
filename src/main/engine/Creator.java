@@ -15,9 +15,21 @@ public class Creator implements CipherCreator {
                 switch(mode){
                     case "CBC":
                         return new AES(mode, key, Cipher.ENCRYPT_MODE);
+                    case "ECB":
+
                     default:
                         //TODO suggest more suiting exception type or message
                         throw new AlgorithmException("Not supported mode!");
+                }
+            }
+            case "DES":{
+                switch(mode){
+                    case "CBC":
+                        break;
+                    case "ECB":
+                        break;
+                    case "CFB":
+                        break;
                 }
             }
             default:{
