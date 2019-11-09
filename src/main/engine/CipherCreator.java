@@ -1,6 +1,7 @@
 package engine;
 
 import engine.exceptions.AlgorithmException;
+
 import java.security.Key;
 
 public interface CipherCreator {
