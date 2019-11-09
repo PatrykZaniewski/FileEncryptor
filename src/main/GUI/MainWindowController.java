@@ -1,5 +1,8 @@
 package GUI;
 
+import engine.Creator;
+import engine.Encryptor;
+import engine.exceptions.AlgorithmException;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,9 +16,21 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Base64;
 
 public class MainWindowController {
 
@@ -109,7 +124,7 @@ public class MainWindowController {
         //TODO przygotuj odpowiedni szyfr -> osobna klasa
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
-        String key = keyInput.getText();
+        String key2 = keyInput.getText();
         int algorithm = algoComboBox.getSelectionModel().getSelectedIndex();
         System.out.println(algorithm);
         int checkFiles = checkFilePaths(filePath, savePath);
@@ -117,12 +132,9 @@ public class MainWindowController {
             showError(1);
         } else if (checkFiles == 2) {
             showError(2);
-        } else if (key.equals("")) {
+        } else if (key2.equals("")) {
             showError(3);
         }
-
-
-
     }
 
     private int checkFilePaths(String filePath, String savePath) {

@@ -1,31 +1,55 @@
 package engine;
 
 import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.Key;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class AES implements Encryptor, Decryptor {
     private String algorithmName;
     private String algorithmMode;
     private int operationMode;
-    private Key key;
+    private SecretKeySpec secretKey;
+    private String key;
+
 
     private Cipher cipher;
 
-    public AES(String mode, Key key, int operationMode){
+    public AES(String mode, String key, int operationMode){
         //TODO null & arguments checking
         this.algorithmName = "AES";
         this.algorithmMode = mode;
         this.key = key;
         this.operationMode = operationMode;
+        setKey(key);
+
 
         try{
             this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
-            this.cipher.init(this.operationMode, key);
+            this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e){
             //TODO suggest more suiting exception type or message
             throw new IllegalStateException("Unable to create a cipher object.");
+        }
+    }
+
+    private void setKey(String myKey)
+    {
+        MessageDigest sha = null;
+        byte[] keyByte = null;
+        try {
+            keyByte = myKey.getBytes("UTF-8");
+            sha = MessageDigest.getInstance("SHA-1");
+            keyByte = sha.digest(keyByte);
+            keyByte = Arrays.copyOf(keyByte, 16);
+            secretKey = new SecretKeySpec(keyByte, "AES");
+        }
+        catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
     }
 
@@ -60,7 +84,7 @@ public class AES implements Encryptor, Decryptor {
         return algorithmMode;
     }
 
-    public Key getKey(){
+    public String getKey(){
         return key;
     }
 
