@@ -4,7 +4,6 @@ import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
-import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -26,8 +25,6 @@ public class AES implements Encryptor, Decryptor {
         this.key = key;
         this.operationMode = operationMode;
         setKey(key);
-
-
         try{
             this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
             this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);

@@ -16,7 +16,7 @@ public class Creator implements CipherCreator {
                     case "CBC":
                         return new AES(mode, key, Cipher.ENCRYPT_MODE);
                     case "ECB":
-
+                        return new AES(mode, key, Cipher.ENCRYPT_MODE);
                     default:
                         throw new AlgorithmException("Not supported mode!");
                 }

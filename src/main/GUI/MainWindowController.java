@@ -120,7 +120,7 @@ public class MainWindowController {
     }
 
     @FXML
-    public void startEnc() {
+    public void startEnc() throws AlgorithmException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
         //TODO przygotuj odpowiedni szyfr -> osobna klasa
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
@@ -135,6 +135,11 @@ public class MainWindowController {
         } else if (key2.equals("")) {
             showError(3);
         }
+
+        Creator creator = new Creator();
+        Encryptor encryptor = creator.createEncryptor("AES", "ECB", "ssshhhhhhhhhhh!!!!");
+        String test = "howtodoinjava.com";
+        System.out.println(Base64.getEncoder().encodeToString(encryptor.encrypt(test.getBytes(StandardCharsets.UTF_8))));
     }
 
     private int checkFilePaths(String filePath, String savePath) {
