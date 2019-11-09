@@ -3,10 +3,10 @@ package engine;
 import engine.exceptions.AlgorithmException;
 
 import javax.crypto.Cipher;
-import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 public class Creator implements CipherCreator {
-    public Encryptor createEncryptor(String algorithm, String mode, String key) throws AlgorithmException{
+    public Encryptor createEncryptor(String algorithm, String mode, String key) throws AlgorithmException, NoSuchAlgorithmException {
         //TODO null & arguments checking
         //TODO more algorithms and modes to implement
         //TODO possibly more elegant way of parsing arguments
@@ -18,7 +18,6 @@ public class Creator implements CipherCreator {
                     case "ECB":
 
                     default:
-                        //TODO suggest more suiting exception type or message
                         throw new AlgorithmException("Not supported mode!");
                 }
             }
@@ -30,11 +29,12 @@ public class Creator implements CipherCreator {
                         break;
                     case "CFB":
                         break;
+                    default:
+                        throw new AlgorithmException("Not supported mode!");
                 }
             }
             default:{
-                //TODO suggest more suiting exception type or message
-                throw new AlgorithmException("Not supported algorithm!");
+                throw new NoSuchAlgorithmException("Not supported algorithm!");
             }
 
         }
