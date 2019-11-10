@@ -1,6 +1,7 @@
 package GUI;
 
 import engine.Creator;
+import engine.Decryptor;
 import engine.Encryptor;
 import engine.exceptions.AlgorithmException;
 import javafx.animation.FadeTransition;
@@ -152,12 +153,15 @@ public class MainWindowController {
             showError(3);
         }
 
-
-
         Creator creator = new Creator();
-        Encryptor encryptor = creator.createEncryptor(algorithm, mode, "ssshhhhhhhhhhh!!!!");
-        String test = "howtodoinjava.com";
-        System.out.println(Base64.getEncoder().encodeToString(encryptor.encrypt(test.getBytes(StandardCharsets.UTF_8))));
+        Encryptor encryptor = creator.createEncryptor("DES", "CBC", "abcd", null);
+        String msg = "howtodoinjava.com";
+
+        byte[] encodedMsg = encryptor.encrypt(msg.getBytes());
+
+        Decryptor decryptor = creator.createDecryptor("DES", "CBC", "abcd", encryptor.getIv());
+        byte[] decoded_msg = decryptor.decrypt(encodedMsg);
+        System.out.println(new String(decoded_msg));
     }
 
     private int checkFilePaths(String filePath, String savePath) {

@@ -6,6 +6,6 @@ public interface Encryptor {
     String getAlgorithmName();
     String getAlgorithmMode();
     String getKey();
-
+    byte[] getIv();
     int getOperationMode();
 }
