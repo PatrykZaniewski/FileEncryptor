@@ -28,11 +28,11 @@ public class DES implements Encryptor, Decryptor {
         if (operationMode != Cipher.DECRYPT_MODE && operationMode != Cipher.ENCRYPT_MODE) {
             throw new IllegalArgumentException("Unsupported operation mode.");
         }
-        if ((mode.equals("CBC") && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
-            throw new IllegalArgumentException("DES CBC Decryption requires 8-bit iv vector.");
+        if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
+            throw new IllegalArgumentException("DES CBC/CFB Decryption requires 8-bit iv vector.");
         }
-        if (mode.equals("CBC") && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("DES CBC Encryption does not accept non-null value in IV.");
+        if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
+            throw new IllegalArgumentException("DES CBC/CFB Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
         if (!supportedModes.contains(mode)) {
@@ -45,10 +45,10 @@ public class DES implements Encryptor, Decryptor {
         this.operationMode = operationMode;
         this.iv = iv;
 
-        switch(operationMode){
-            case 1:{ // 1 stands for Cipher.ENCRYPT_MODE
+        switch (operationMode) {
+            case 1: { // 1 stands for Cipher.ENCRYPT_MODE
                 try {
-                    if ("CBC".equals(mode)) {
+                    if ("CBC".equals(mode) || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         byte[] byteIv = new byte[8];
                         SecureRandom random = new SecureRandom();
@@ -68,9 +68,9 @@ public class DES implements Encryptor, Decryptor {
                 }
                 break;
             }
-            case 2:{ // 2 stands for Cipher.DECRYPT_MODE
+            case 2: { // 2 stands for Cipher.DECRYPT_MODE
                 try {
-                    if (mode.equals("CBC")){
+                    if (mode.equals("CBC") || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         IvParameterSpec ivParameterSpec = new IvParameterSpec(this.iv);
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);

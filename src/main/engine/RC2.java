@@ -27,14 +27,14 @@ public class RC2 implements Decryptor, Encryptor {
         if (operationMode != Cipher.DECRYPT_MODE && operationMode != Cipher.ENCRYPT_MODE) {
             throw new IllegalArgumentException("Unsupported operation mode.");
         }
-        if ((mode.equals("CBC") && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
-            throw new IllegalArgumentException("RC2 CBC Decryption requires 8-bit iv vector.");
+        if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
+            throw new IllegalArgumentException("RC2 CBC/CFB Decryption requires 8-bit iv vector.");
         }
-        if (mode.equals("CBC") && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("RC2 CBC Encryption does not accept non-null value in IV.");
+        if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
+            throw new IllegalArgumentException("RC2 CBC/CFB Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
-        if (!supportedModes.contains(mode)){
+        if (!supportedModes.contains(mode)) {
             throw new IllegalArgumentException("Unsupported mode.");
         }
 
@@ -44,10 +44,10 @@ public class RC2 implements Decryptor, Encryptor {
         this.iv = iv;
         this.operationMode = operationMode;
 
-        switch(operationMode){
-            case 1:{ // 1 stands for Cipher.ENCRYPT_MODE
+        switch (operationMode) {
+            case 1: { // 1 stands for Cipher.ENCRYPT_MODE
                 try {
-                    if ("CBC".equals(mode)) {
+                    if ("CBC".equals(mode) || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         byte[] byteIv = new byte[8];
                         SecureRandom random = new SecureRandom();
@@ -67,9 +67,9 @@ public class RC2 implements Decryptor, Encryptor {
                 }
                 break;
             }
-            case 2:{ // 2 stands for Cipher.DECRYPT_MODE
+            case 2: { // 2 stands for Cipher.DECRYPT_MODE
                 try {
-                    if (mode.equals("CBC")){
+                    if (mode.equals("CBC") || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         IvParameterSpec ivParameterSpec = new IvParameterSpec(this.iv);
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
@@ -93,7 +93,7 @@ public class RC2 implements Decryptor, Encryptor {
         if (operationMode == Cipher.DECRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in decryption mode to encrypt data.");
         }
-        if (data == null){
+        if (data == null) {
             return null;
         }
 
@@ -109,7 +109,7 @@ public class RC2 implements Decryptor, Encryptor {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
-        if (data == null){
+        if (data == null) {
             return null;
         }
 

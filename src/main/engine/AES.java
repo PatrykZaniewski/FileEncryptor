@@ -32,14 +32,14 @@ public class AES implements Encryptor, Decryptor {
         if (operationMode != Cipher.DECRYPT_MODE && operationMode != Cipher.ENCRYPT_MODE) {
             throw new IllegalArgumentException("Unsupported operation mode.");
         }
-        if ((mode.equals("CBC") && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 16)) {
-            throw new IllegalArgumentException("AES CBC Decryption requires 16-bit iv vector.");
+        if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 16)) {
+            throw new IllegalArgumentException("AES CBC/CFB Decryption requires 16-bit iv vector.");
         }
-        if (mode.equals("CBC") && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("AES CBC Encryption does not accept non-null value in IV.");
+        if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
+            throw new IllegalArgumentException("AES CBC/CFB Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
-        if (!supportedModes.contains(mode)){
+        if (!supportedModes.contains(mode)) {
             throw new IllegalArgumentException("Unsupported mode.");
         }
 
@@ -49,10 +49,10 @@ public class AES implements Encryptor, Decryptor {
         this.iv = iv;
         this.operationMode = operationMode;
 
-        switch(operationMode){
-            case 1:{ // 1 stands for Cipher.ENCRYPT_MODE
+        switch (operationMode) {
+            case 1: { // 1 stands for Cipher.ENCRYPT_MODE
                 try {
-                    if ("CBC".equals(mode)) {
+                    if ("CBC".equals(mode) || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         byte[] byteIv = new byte[16];
                         SecureRandom random = new SecureRandom();
@@ -72,9 +72,9 @@ public class AES implements Encryptor, Decryptor {
                 }
                 break;
             }
-            case 2:{ // 2 stands for Cipher.DECRYPT_MODE
+            case 2: { // 2 stands for Cipher.DECRYPT_MODE
                 try {
-                    if (mode.equals("CBC")){
+                    if (mode.equals("CBC") || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         IvParameterSpec ivParameterSpec = new IvParameterSpec(this.iv);
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
@@ -85,6 +85,7 @@ public class AES implements Encryptor, Decryptor {
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey);
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+                    e.printStackTrace();
                     throw new IllegalStateException("Unable to create a cipher object.");
                 }
                 break;
@@ -98,7 +99,7 @@ public class AES implements Encryptor, Decryptor {
         if (operationMode == Cipher.DECRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in decryption mode to encrypt data.");
         }
-        if (data == null){
+        if (data == null) {
             return null;
         }
 
@@ -114,7 +115,7 @@ public class AES implements Encryptor, Decryptor {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
-        if (data == null){
+        if (data == null) {
             return null;
         }
 
