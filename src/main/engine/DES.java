@@ -4,6 +4,7 @@ import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.Arrays;
 
@@ -27,12 +28,24 @@ public class DES implements Encryptor, Decryptor {
         try{
             //TODO java.lang.IllegalStateException: Unable to create a cipher object.
             this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
+            System.out.println("XDDDDDDDDD");
             if ("ECB".equals(algorithmMode)) {
                 this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            }
+            else
+            {
+                int ivSize = 8;
+                byte[] iv = new byte[ivSize];
+                SecureRandom random = new SecureRandom();
+                random.nextBytes(iv);
+                IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+                this.cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
             }
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e){
             //TODO suggest more suiting exception type or message
             throw new IllegalStateException("Unable to create a cipher object.");
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
         }
     }
 
@@ -41,13 +54,13 @@ public class DES implements Encryptor, Decryptor {
         MessageDigest sha = null;
         byte[] keyByte = null;
         try {
-            keyByte = myKey.getBytes("UTF-8");
+            keyByte = myKey.getBytes(StandardCharsets.UTF_8);
             sha = MessageDigest.getInstance("SHA-1");
             keyByte = sha.digest(keyByte);
-            keyByte = Arrays.copyOf(keyByte, 16);
+            keyByte = Arrays.copyOf(keyByte, 8);
             secretKey = new SecretKeySpec(keyByte, "DES");
         }
-        catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+        catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }

@@ -26,11 +26,11 @@ public class Creator implements CipherCreator {
             case "DES":{
                 switch(mode){
                     case "CBC":
-                        break;
+                        return new DES(mode, key, Cipher.ENCRYPT_MODE);
                     case "ECB":
                         return new DES(mode, key, Cipher.ENCRYPT_MODE);
                     case "CFB":
-                        break;
+                        return new DES(mode, key, Cipher.ENCRYPT_MODE);
                     default:
                         throw new AlgorithmException("Not supported mode!");
                 }

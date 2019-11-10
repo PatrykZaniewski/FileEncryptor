@@ -6,10 +6,7 @@ import engine.exceptions.AlgorithmException;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -34,6 +31,8 @@ import java.util.Base64;
 
 public class MainWindowController {
 
+    @FXML
+    public Label keyLabel;
     @FXML
     private VBox stepTwoEncVBox;
     @FXML
@@ -107,6 +106,14 @@ public class MainWindowController {
     @FXML
     public void setAlgorithm() {
         animateNode(stepThreeEncVBox);
+        if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
+        {
+            keyLabel.setText("Przesunięcie:");
+        }
+        else
+        {
+            keyLabel.setText("Klucz:");
+        }
     }
 
     @FXML
@@ -131,6 +138,10 @@ public class MainWindowController {
             String[] splitted= algoComboBox.getValue().split("\\s+");
             algorithm = splitted[0];
             mode = splitted[3];
+        }
+        else if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
+        {
+            keyInput.setText("Przesunięcie:");
         }
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
