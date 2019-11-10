@@ -5,6 +5,7 @@ import engine.Decryptor;
 import engine.Encryptor;
 import engine.exceptions.AlgorithmException;
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -20,10 +21,12 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -130,7 +133,7 @@ public class MainWindowController {
     }
 
     @FXML
-    public void startEnc() throws AlgorithmException, NoSuchAlgorithmException{
+    public boolean startEnc() throws AlgorithmException, NoSuchAlgorithmException, IOException {
         //TODO przygotuj odpowiedni szyfr -> osobna klasa
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
@@ -142,10 +145,12 @@ public class MainWindowController {
         if (index < 3) {
             if ((key.length() != 16) && (key.length() != 32)) {
                 showError(4);
+                //return false;
             }
         } else if (index < 6) {
             if (key.length() != 8) {
                 showError(5);
+                //return false;
             }
         }
 
@@ -154,28 +159,63 @@ public class MainWindowController {
             algorithm = splitted[0];
             mode = splitted[3];
         }
-        /*else if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
-        {
-            keyInput.setText("Przesunięcie:");
-        }*/
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
+            return false;
         } else if (checkFiles == 2) {
             showError(2);
+            return false;
         } else if (key.equals("")) {
             showError(3);
+            return false;
         }
+        else{
+            //"ssshhhhhhhhhhh!!!!"
+            Creator creator = new Creator();
+            Encryptor encryptor = creator.createEncryptor(algorithm, mode, key, null);
+            String msg = new String(Files.readAllBytes(Paths.get(filePath)));
+            System.out.println(msg);
+            byte[] encodedMsg = encryptor.encrypt(msg.getBytes());
+            byte[] iv = encryptor.getIv();
 
+            System.out.println(Base64.getEncoder().encodeToString(encodedMsg));
+            if(iv != null) {
+                System.out.println(Base64.getEncoder().encodeToString(iv));
+            }
+
+            return true;
+        }
+    }
+
+    public boolean startDec() throws IOException {
+        /*String filePath = filePathTextFieldEnc.getText();
+        String savePath = directoryTextFieldEnc.getText();
+        String key = keyInput.getText();
+        String algorithm = null;
+        String mode = null;
+
+        int index = algoComboBox.getSelectionModel().getSelectedIndex();
+
+        int checkFiles = checkFilePaths(filePath, savePath);
+        if (checkFiles == 1) {
+            showError(1);
+            return false;
+        } else if (checkFiles == 2) {
+            showError(2);
+            return false;
+        } else if (key.equals("")) {
+            showError(3);
+            return false;
+        }
         Creator creator = new Creator();
-        Encryptor encryptor = creator.createEncryptor("AES", "CFB", "abcd", null);
-        String msg = "howtodoinjava.com";
-
-        byte[] encodedMsg = encryptor.encrypt(msg.getBytes());
-
-        Decryptor decryptor = creator.createDecryptor("AES", "CFB", "abcd", encryptor.getIv());
-        byte[] decoded_msg = decryptor.decrypt(encodedMsg);
-        System.out.println(new String(decoded_msg));
+        String enc = new String(Files.readAllBytes(Paths.get(filePath)));
+        System.out.println("XD");
+        System.out.println(enc);
+        //Decryptor decryptor = creator.createDecryptor(algorithm, mode, key, encryptor.getIv());
+        //byte[] decoded_msg = decryptor.decrypt(enc.getBytes());
+        //System.out.println(new String(decoded_msg));*/
+        return true;
     }
 
     private int checkFilePaths(String filePath, String savePath) {
