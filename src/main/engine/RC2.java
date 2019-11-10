@@ -2,14 +2,13 @@ package engine;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class DES implements Encryptor, Decryptor {
-    private final String algorithmName = "DES";
+public class RC2 implements Decryptor, Encryptor {
+
+    private final String algorithmName = "RC2";
     private String algorithmMode;
     private Key secretKey;
     private String key;
@@ -20,7 +19,7 @@ public class DES implements Encryptor, Decryptor {
 
     private final String[] supportedModesArray = {"ECB", "CBC", "CFB"};
 
-    public DES(String mode, String key, byte[] iv, int operationMode) {
+    public RC2(String mode, String key, byte[] iv, int operationMode) {
         // "iv" argument is checked for null only if mode=="CBC"
         if (mode == null || key == null) {
             throw new IllegalArgumentException("Null value has been passed.");
@@ -29,21 +28,21 @@ public class DES implements Encryptor, Decryptor {
             throw new IllegalArgumentException("Unsupported operation mode.");
         }
         if ((mode.equals("CBC") && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
-            throw new IllegalArgumentException("DES CBC Decryption requires 8-bit iv vector.");
+            throw new IllegalArgumentException("RC2 CBC Decryption requires 8-bit iv vector.");
         }
         if (mode.equals("CBC") && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("DES CBC Encryption does not accept non-null value in IV.");
+            throw new IllegalArgumentException("RC2 CBC Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
-        if (!supportedModes.contains(mode)) {
+        if (!supportedModes.contains(mode)){
             throw new IllegalArgumentException("Unsupported mode.");
         }
 
         this.algorithmMode = mode;
         this.key = key;
-        setSecretKey(key);
-        this.operationMode = operationMode;
+        setSecretKey(this.key);
         this.iv = iv;
+        this.operationMode = operationMode;
 
         switch(operationMode){
             case 1:{ // 1 stands for Cipher.ENCRYPT_MODE
@@ -90,30 +89,18 @@ public class DES implements Encryptor, Decryptor {
         }
     }
 
-    private void setSecretKey(String myKey) {
-        try {
-            KeyGenerator keyGen = KeyGenerator.getInstance("DES");
-            SecureRandom secRandom = new SecureRandom(myKey.getBytes());
-            keyGen.init(secRandom);
-            Key key = keyGen.generateKey();
-            this.secretKey = key;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("Cannot generate a secret key.");
-        }
-    }
-
     public byte[] encrypt(byte[] data) {
         if (operationMode == Cipher.DECRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in decryption mode to encrypt data.");
         }
-        if (data == null) {
+        if (data == null){
             return null;
         }
 
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
+            e.printStackTrace();
             throw new IllegalStateException("Cannot encrypt given data.");
         }
     }
@@ -122,14 +109,28 @@ public class DES implements Encryptor, Decryptor {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
-        if (data == null) {
+        if (data == null){
             return null;
         }
 
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
-            throw new IllegalStateException("Cannot encrypt given data.");
+            e.printStackTrace();
+            throw new IllegalStateException("Cannot decrypt given data.");
+        }
+    }
+
+    private void setSecretKey(String myKey) {
+        try {
+            KeyGenerator keyGen = KeyGenerator.getInstance("RC2");
+            SecureRandom secRandom = new SecureRandom(myKey.getBytes());
+            keyGen.init(secRandom);
+            Key key = keyGen.generateKey();
+            this.secretKey = key;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Cannot generate a secret key.");
         }
     }
 

@@ -6,6 +6,25 @@ import javax.crypto.Cipher;
 import java.security.NoSuchAlgorithmException;
 
 public class Creator implements CipherCreator {
+
+    public Encryptor createEncryptor(String algorithm, int shift) throws AlgorithmException {
+        // iv is allowed to be null in same cases
+        if(algorithm == null){
+            throw new IllegalArgumentException("Null-value has been passed.");
+        }
+
+        switch (algorithm){
+            case "ROT":{
+                //TODO ROT encryption
+                throw new UnsupportedOperationException();
+            }
+            default:{
+                throw new AlgorithmException("Not supported algorithm!");
+            }
+
+        }
+    }
+
     public Encryptor createEncryptor(String algorithm, String mode, String key, byte[] iv) throws AlgorithmException {
         // iv is allowed to be null in same cases
         if(algorithm == null || mode == null || key == null){
@@ -18,6 +37,9 @@ public class Creator implements CipherCreator {
             }
             case "DES":{
                 return new DES(mode, key, iv, Cipher.ENCRYPT_MODE);
+            }
+            case "RC2":{
+                return new RC2(mode, key, iv, Cipher.ENCRYPT_MODE);
             }
             default:{
                 throw new AlgorithmException("Not supported algorithm!");
@@ -38,6 +60,9 @@ public class Creator implements CipherCreator {
             }
             case "DES":{
                 return new DES(mode, key, iv, Cipher.DECRYPT_MODE);
+            }
+            case "RC2":{
+                return new RC2(mode, key, iv, Cipher.DECRYPT_MODE);
             }
             default: {
                 throw new AlgorithmException("Not supported algorithm!");
