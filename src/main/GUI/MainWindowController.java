@@ -110,10 +110,12 @@ public class MainWindowController {
         if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
         {
             keyLabel.setText("Przesunięcie:");
+            keyLabel.setPrefWidth(165);
         }
         else
         {
             keyLabel.setText("Klucz:");
+            keyLabel.setPrefWidth(46);
         }
     }
 
@@ -135,15 +137,27 @@ public class MainWindowController {
         String key = keyInput.getText();
         String algorithm = null;
         String mode = null;
-        if(algoComboBox.getSelectionModel().getSelectedIndex() < 6){
+        int index = algoComboBox.getSelectionModel().getSelectedIndex();
+
+        if (index < 3) {
+            if ((key.length() != 16) && (key.length() != 32)) {
+                showError(4);
+            }
+        } else if (index < 6) {
+            if (key.length() != 8) {
+                showError(5);
+            }
+        }
+
+        if(index < 6){
             String[] splitted= algoComboBox.getValue().split("\\s+");
             algorithm = splitted[0];
             mode = splitted[3];
         }
-        else if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
+        /*else if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
         {
             keyInput.setText("Przesunięcie:");
-        }
+        }*/
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
@@ -190,6 +204,12 @@ public class MainWindowController {
             case 3:
                 mes = "Podaj klucz, any kontynuować";
                 break;
+            case 4:
+                mes = "Nieprawidłowa długość klucza. Dla trybu AES wynosi ona 16 lub 32 znaków.";
+                break;
+            case 5:
+                mes = "Nieprawidłowa długość klucza. Dla trybu AES wynosi ona 8 znaków.";
+                break;
             default:
                 mes = "Wystąpił bład";
                 break;
@@ -225,6 +245,8 @@ public class MainWindowController {
 
     private void openFileChooser(TextField pathField, VBox toAnimate) {
         FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
         Stage mainStage = (Stage) savePathButtonEnc.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(mainStage);
         if (selectedFile != null) {
