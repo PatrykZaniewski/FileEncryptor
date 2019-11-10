@@ -3,7 +3,6 @@ package engine;
 import engine.exceptions.AlgorithmException;
 
 import javax.crypto.Cipher;
-import java.security.NoSuchAlgorithmException;
 
 public class Creator implements CipherCreator {
 
@@ -41,6 +40,27 @@ public class Creator implements CipherCreator {
             case "RC2":{
                 return new RC2(mode, key, iv, Cipher.ENCRYPT_MODE);
             }
+            case "Blowfish":{
+                return new Blowfish(mode, key, iv, Cipher.ENCRYPT_MODE);
+            }
+            default:{
+                throw new AlgorithmException("Not supported algorithm!");
+            }
+
+        }
+    }
+
+    public Decryptor createDecryptor(String algorithm, int shift) throws AlgorithmException {
+        // iv is allowed to be null in same cases
+        if(algorithm == null){
+            throw new IllegalArgumentException("Null-value has been passed.");
+        }
+
+        switch (algorithm){
+            case "ROT":{
+                //TODO ROT decryption
+                throw new UnsupportedOperationException();
+            }
             default:{
                 throw new AlgorithmException("Not supported algorithm!");
             }
@@ -63,6 +83,9 @@ public class Creator implements CipherCreator {
             }
             case "RC2":{
                 return new RC2(mode, key, iv, Cipher.DECRYPT_MODE);
+            }
+            case "Blowfish":{
+                return new Blowfish(mode, key, iv, Cipher.DECRYPT_MODE);
             }
             default: {
                 throw new AlgorithmException("Not supported algorithm!");

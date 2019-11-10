@@ -168,12 +168,12 @@ public class MainWindowController {
         }
 
         Creator creator = new Creator();
-        Encryptor encryptor = creator.createEncryptor("RC2", "CBC", "abcd", null);
+        Encryptor encryptor = creator.createEncryptor("Blowfish", "CBC", "abcd", null);
         String msg = "howtodoinjava.com";
 
         byte[] encodedMsg = encryptor.encrypt(msg.getBytes());
 
-        Decryptor decryptor = creator.createDecryptor("RC2", "CBC", "abcd", encryptor.getIv());
+        Decryptor decryptor = creator.createDecryptor("Blowfish", "CBC", "abcd", encryptor.getIv());
         byte[] decoded_msg = decryptor.decrypt(encodedMsg);
         System.out.println(new String(decoded_msg));
     }
