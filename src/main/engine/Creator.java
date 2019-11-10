@@ -42,7 +42,7 @@ public class Creator implements CipherCreator {
         }
     }
 
-    public Decryptor createDecryptor(String algorithm, String mode, String key) throws AlgorithmException{
+    public Decryptor createDecryptor(String algorithm, String mode, String key) throws AlgorithmException, NoSuchAlgorithmException {
         //TODO decryption
         throw new UnsupportedOperationException();
     }

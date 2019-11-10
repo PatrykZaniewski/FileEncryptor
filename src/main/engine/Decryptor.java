@@ -6,4 +6,6 @@ public interface Decryptor {
     String getAlgorithmName();
     String getAlgorithmMode();
     String getKey();
+
+    int getOperationMode();
 }
