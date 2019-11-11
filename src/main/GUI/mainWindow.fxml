@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
@@ -15,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainWindowController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainWindowController">
     <children>
         <TabPane prefHeight="660.0" prefWidth="735.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -264,7 +270,7 @@
                                                                 <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField onKeyTyped="#setKeyDec" prefHeight="37.0" prefWidth="448.0">
+                                                        <TextField fx:id="keyDecInput" onKeyTyped="#setKeyDec" prefHeight="37.0" prefWidth="448.0">
                                                             <font>
                                                                 <Font size="16.0" />
                                                             </font>

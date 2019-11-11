@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
         primaryStage.setTitle("CipherApp");
         primaryStage.setScene(new Scene(root, 735, 600));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

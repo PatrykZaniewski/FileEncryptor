@@ -59,6 +59,8 @@ public class MainWindowController {
     private ComboBox<String> algoComboBox;
     @FXML
     private TextField keyInput;
+    @FXML
+    private TextField keyDecInput;
 
     @FXML
     public void openDirectoryChooserEnc() {
@@ -190,6 +192,10 @@ public class MainWindowController {
     public boolean startDec() throws IOException, ParseException, AlgorithmException {
 
         //TODO Potrzebuje tutaj sciezki do wczytania, zapisu i klucza
+
+        String filePath = filePathTextFieldDec.getText(); // ścieżka do wczytania
+        String savePath = directoryTextFieldDec.getText(); // ścieżka do zapisu
+        String keyDec = keyDecInput.getText(); // klucz
 
         Object obj = new JSONParser().parse(new FileReader("C:\\Users\\Unknown\\Desktop\\CipherOut.json"));
         JSONObject jsonObject = (JSONObject) obj;
