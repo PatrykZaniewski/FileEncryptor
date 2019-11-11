@@ -270,7 +270,7 @@
                                                 </HBox>
                                                 <HBox prefHeight="2.0" prefWidth="500.0">
                                                     <children>
-                                                        <Label prefHeight="37.0" prefWidth="46.0" text="Klucz:">
+                                                        <Label fx:id="keyDecLabel" prefHeight="37.0" prefWidth="46.0" text="Klucz:">
                                                             <font>
                                                                 <Font size="18.0" />
                                                             </font>
