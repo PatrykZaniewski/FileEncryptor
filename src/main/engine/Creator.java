@@ -14,8 +14,7 @@ public class Creator implements CipherCreator {
 
         switch (algorithm) {
             case "ROT": {
-                //TODO ROT encryption
-                throw new UnsupportedOperationException();
+                return new ROT(shift, Cipher.ENCRYPT_MODE);
             }
             default: {
                 throw new AlgorithmException("Not supported algorithm!");
@@ -58,8 +57,7 @@ public class Creator implements CipherCreator {
 
         switch (algorithm) {
             case "ROT": {
-                //TODO ROT decryption
-                throw new UnsupportedOperationException("TODO");
+                return new ROT(shift, Cipher.DECRYPT_MODE);
             }
             default: {
                 throw new AlgorithmException("Not supported algorithm!");
