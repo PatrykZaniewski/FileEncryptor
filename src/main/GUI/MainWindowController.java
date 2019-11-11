@@ -126,31 +126,23 @@ public class MainWindowController {
 
     @FXML
     public boolean startEnc() throws AlgorithmException, IOException {
-        //TODO przygotuj odpowiedni szyfr -> osobna klasa
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
         String key = keyInput.getText();
-        String algorithm = null;
-        String mode = null;
         int index = algoComboBox.getSelectionModel().getSelectedIndex();
 
-        if (index < 3) {
+        /*if (index < 3) {
             if ((key.length() != 16) && (key.length() != 32)) {
                 showError(4);
-                //return false;
+                return false;
             }
         } else if (index < 6) {
             if (key.length() != 8) {
                 showError(5);
-                //return false;
+                return false;
             }
-        }
+        }*/
 
-        if (index < 6) {
-            String[] splitted = algoComboBox.getValue().split("\\s+");
-            algorithm = splitted[0];
-            mode = splitted[3];
-        }
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
@@ -163,65 +155,86 @@ public class MainWindowController {
             return false;
         } else {
             Creator creator = new Creator();
-            Encryptor encryptor = creator.createEncryptor(algorithm, mode, key, null);
             String msg = new String(Files.readAllBytes(Paths.get(filePath)));
-            System.out.println(msg);
-            byte[] encodedMsg = encryptor.encrypt(msg.getBytes());
-            byte[] iv = encryptor.getIv();
-            System.out.println(iv);
-            String test = Base64.getEncoder().encodeToString(iv);
-            System.out.println(test);
-            byte[] iv2 = Base64.getDecoder().decode(test);
-            System.out.println(iv2);
-            System.out.println(Base64.getEncoder().encodeToString(iv2));
-
+            byte[] encodedMsg = null;
+            String algorithm = null;
+            String mode = null;
             JSONObject obj = new JSONObject();
-            obj.put("Algorithm", algorithm);
-            obj.put("Mode", mode);
-            obj.put("Key", key);
-            obj.put("Iv", Base64.getEncoder().encodeToString(iv));
-            obj.put("Encrypted", Base64.getEncoder().encodeToString(encodedMsg));
 
+            if (index < 12) {
+                String[] splitted = algoComboBox.getValue().split("\\s+");
+                algorithm = splitted[0];
+                mode = splitted[3];
+
+                Encryptor encryptor = creator.createEncryptor(algorithm, mode, key, null);
+                encodedMsg = encryptor.encrypt(msg.getBytes());
+                byte[] iv = encryptor.getIv();
+
+                if (iv == null) {
+                    obj.put("Iv", "");
+                } else {
+                    obj.put("Iv", Base64.getEncoder().encodeToString(iv));
+                }
+                obj.put("Mode", mode);
+            } else {
+                algorithm = "ROT";
+                int shift = Integer.parseInt(key);
+                Encryptor encryptor = creator.createEncryptor(algorithm, shift);
+                encodedMsg = encryptor.encrypt(msg.getBytes());
+            }
+            obj.put("Algorithm", algorithm);
+            obj.put("Encrypted", Base64.getEncoder().encodeToString(encodedMsg));
             FileWriter file = new FileWriter(savePath + "/cipherOut.json");
             file.write(obj.toJSONString());
             file.close();
+
             return true;
         }
     }
 
     public boolean startDec() throws IOException, ParseException, AlgorithmException {
+        String filePath = filePathTextFieldDec.getText();
+        String savePath = directoryTextFieldDec.getText();
+        String keyDec = keyDecInput.getText();
 
-        //TODO Potrzebuje tutaj sciezki do wczytania, zapisu i klucza
+        int checkFiles = checkFilePaths(filePath, savePath);
 
-        String filePath = filePathTextFieldDec.getText(); // ścieżka do wczytania
-        String savePath = directoryTextFieldDec.getText(); // ścieżka do zapisu
-        String keyDec = keyDecInput.getText(); // klucz
-
-        Object obj = new JSONParser().parse(new FileReader("C:\\Users\\Unknown\\Desktop\\CipherOut.json"));
-        JSONObject jsonObject = (JSONObject) obj;
-
-        String algorithm = (String) jsonObject.get("Algorithm");
-        String mode = (String) jsonObject.get("Mode");
-        String key = (String) jsonObject.get("Key");
-        String iv = (String) jsonObject.get("Iv");
-        String enc = (String) jsonObject.get("Encrypted");
-
-       /* int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
             return false;
         } else if (checkFiles == 2) {
             showError(2);
             return false;
-        } else if (key.equals("")) {
+        } else if (keyDec.equals("")) {
             showError(3);
             return false;
-        }*/
+        }
 
+        Object obj = new JSONParser().parse(new FileReader(filePath));
+        JSONObject jsonObject = (JSONObject) obj;
+
+        String algorithm = (String) jsonObject.get("Algorithm");
+        String enc = (String) jsonObject.get("Encrypted");
         Creator creator = new Creator();
-        Decryptor decryptor = creator.createDecryptor(algorithm, mode, key, Base64.getDecoder().decode(iv));
-        byte[] decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
-        FileWriter file = new FileWriter("C:\\Users\\Unknown\\Desktop\\CipherOut2.txt");
+        Decryptor decryptor;
+        byte[] decoded_msg = null;
+
+        if(algorithm.equals("ROT"))
+        {
+            decryptor = creator.createDecryptor("ROT", Integer.parseInt(keyDec));
+        }
+        else {
+            String mode = (String) jsonObject.get("Mode");
+            String iv = (String) jsonObject.get("Iv");
+            byte[] ivByte = null;
+            if (!iv.equals("")) {
+                ivByte = Base64.getDecoder().decode(iv);
+            }
+            enc = (String) jsonObject.get("Encrypted");
+            decryptor = creator.createDecryptor(algorithm, mode, keyDec, ivByte);
+        }
+        decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
+        FileWriter file = new FileWriter(savePath + "/trolololo.txt");
         file.write(new String(decoded_msg));
         file.close();
         return true;

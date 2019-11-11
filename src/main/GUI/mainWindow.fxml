@@ -104,8 +104,13 @@
                                                                     <String fx:value="DES w trybie ECB" />
                                                                     <String fx:value="DES w trybie CBC" />
                                                                     <String fx:value="DES w trybie CFB" />
-                                                                    <String fx:value="ROT13" />
-                                                                    <String fx:value="RSA" />
+                                                                    <String fx:value="RC2 w trybie ECB" />
+                                                                    <String fx:value="RC2 w trybie CBC" />
+                                                                    <String fx:value="RC2 w trybie CFB" />
+                                                                    <String fx:value="Blowfish w trybie ECB" />
+                                                                    <String fx:value="Blowfish w trybie CBC" />
+                                                                    <String fx:value="Blowfish w trybie CFB" />
+                                                                    <String fx:value="ROT" />
                                                                 </FXCollections>
                                                             </items>
                                                         </ComboBox>
