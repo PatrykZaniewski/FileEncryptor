@@ -145,8 +145,6 @@ public class MainWindowController {
         animateNode(stepThreeDecVBox);
     }
 
-    byte[] test;
-
     @FXML
     public boolean startEnc() throws AlgorithmException, IOException {
         String filePath = filePathTextFieldEnc.getText();
@@ -156,18 +154,6 @@ public class MainWindowController {
         String[] nameSplitted = filePath.split("\\.");
         String ext = nameSplitted[nameSplitted.length - 1];
         ext = "." + ext;
-
-        /*if (index < 3) {
-            if ((key.length() != 16) && (key.length() != 32)) {
-                showError(4);
-                return false;
-            }
-        } else if (index < 6) {
-            if (key.length() != 8) {
-                showError(5);
-                return false;
-            }
-        }*/
 
         int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
@@ -211,7 +197,6 @@ public class MainWindowController {
                     obj.put("Iv", Base64.getEncoder().encodeToString(iv));
                 }
                 obj.put("Mode", mode);
-                test = msg;
             } else {
                 algorithm = "ROT";
 
