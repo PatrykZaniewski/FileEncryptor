@@ -5,7 +5,6 @@ import engine.Decryptor;
 import engine.Encryptor;
 import engine.exceptions.AlgorithmException;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -14,23 +13,17 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.Base64;
 
 public class MainWindowController {
@@ -130,7 +123,7 @@ public class MainWindowController {
     }
 
     @FXML
-    public boolean startEnc() throws AlgorithmException, NoSuchAlgorithmException, IOException {
+    public boolean startEnc() throws AlgorithmException, IOException {
         //TODO przygotuj odpowiedni szyfr -> osobna klasa
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
@@ -167,33 +160,47 @@ public class MainWindowController {
             showError(3);
             return false;
         } else {
-            //"ssshhhhhhhhhhh!!!!"
             Creator creator = new Creator();
             Encryptor encryptor = creator.createEncryptor(algorithm, mode, key, null);
             String msg = new String(Files.readAllBytes(Paths.get(filePath)));
             System.out.println(msg);
             byte[] encodedMsg = encryptor.encrypt(msg.getBytes());
             byte[] iv = encryptor.getIv();
+            System.out.println(iv);
+            String test = Base64.getEncoder().encodeToString(iv);
+            System.out.println(test);
+            byte[] iv2 = Base64.getDecoder().decode(test);
+            System.out.println(iv2);
+            System.out.println(Base64.getEncoder().encodeToString(iv2));
 
-            System.out.println(Base64.getEncoder().encodeToString(encodedMsg));
-            if (iv != null) {
-                System.out.println(Base64.getEncoder().encodeToString(iv));
-            }
+            JSONObject obj = new JSONObject();
+            obj.put("Algorithm", algorithm);
+            obj.put("Mode", mode);
+            obj.put("Key", key);
+            obj.put("Iv", Base64.getEncoder().encodeToString(iv));
+            obj.put("Encrypted", Base64.getEncoder().encodeToString(encodedMsg));
 
+            FileWriter file = new FileWriter(savePath + "/cipherOut.json");
+            file.write(obj.toJSONString());
+            file.close();
             return true;
         }
     }
 
-    public boolean startDec() throws IOException {
-        /*String filePath = filePathTextFieldEnc.getText();
-        String savePath = directoryTextFieldEnc.getText();
-        String key = keyInput.getText();
-        String algorithm = null;
-        String mode = null;
+    public boolean startDec() throws IOException, ParseException, AlgorithmException {
 
-        int index = algoComboBox.getSelectionModel().getSelectedIndex();
+        //TODO Potrzebuje tutaj sciezki do wczytania, zapisu i klucza
 
-        int checkFiles = checkFilePaths(filePath, savePath);
+        Object obj = new JSONParser().parse(new FileReader("C:\\Users\\Unknown\\Desktop\\CipherOut.json"));
+        JSONObject jsonObject = (JSONObject) obj;
+
+        String algorithm = (String) jsonObject.get("Algorithm");
+        String mode = (String) jsonObject.get("Mode");
+        String key = (String) jsonObject.get("Key");
+        String iv = (String) jsonObject.get("Iv");
+        String enc = (String) jsonObject.get("Encrypted");
+
+       /* int checkFiles = checkFilePaths(filePath, savePath);
         if (checkFiles == 1) {
             showError(1);
             return false;
@@ -203,14 +210,14 @@ public class MainWindowController {
         } else if (key.equals("")) {
             showError(3);
             return false;
-        }
+        }*/
+
         Creator creator = new Creator();
-        String enc = new String(Files.readAllBytes(Paths.get(filePath)));
-        System.out.println("XD");
-        System.out.println(enc);
-        //Decryptor decryptor = creator.createDecryptor(algorithm, mode, key, encryptor.getIv());
-        //byte[] decoded_msg = decryptor.decrypt(enc.getBytes());
-        //System.out.println(new String(decoded_msg));*/
+        Decryptor decryptor = creator.createDecryptor(algorithm, mode, key, Base64.getDecoder().decode(iv));
+        byte[] decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
+        FileWriter file = new FileWriter("C:\\Users\\Unknown\\Desktop\\CipherOut2.txt");
+        file.write(new String(decoded_msg));
+        file.close();
         return true;
     }
 
@@ -281,7 +288,7 @@ public class MainWindowController {
 
     private void openFileChooser(TextField pathField, VBox toAnimate) {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT (*.txt)", "*.txt", "*.json");
         fileChooser.getExtensionFilters().add(extFilter);
         Stage mainStage = (Stage) savePathButtonEnc.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(mainStage);
