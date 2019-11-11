@@ -16,6 +16,9 @@ public class ROT implements Decryptor, Encryptor {
         if (shift < -128 || shift > 127) {
             throw new AlgorithmException("Incorrect value of shift. It has to be between -128 and 127.");
         }
+        if (shift == 0) {
+            throw new AlgorithmException("Incorrect value of shift. Passed value is 0.");
+        }
 
         this.shift = shift;
         this.operationMode = operationMode;
@@ -30,8 +33,9 @@ public class ROT implements Decryptor, Encryptor {
             return null;
         }
 
+        byte shiftByte = (byte) (shift & 0x7F);
         for (int i = 0; i < data.length; i++) {
-            data[i] = (byte) (data[i] - shift);
+            data[i] = (byte) (data[i] - shiftByte);
         }
 
         return data;
@@ -46,8 +50,9 @@ public class ROT implements Decryptor, Encryptor {
             return null;
         }
 
+        byte shiftByte = (byte) (shift & 0x7F);
         for (int i = 0; i < data.length; i++) {
-            data[i] = (byte) (data[i] + shift);
+            data[i] = (byte) (data[i] + shiftByte);
         }
 
         return data;
