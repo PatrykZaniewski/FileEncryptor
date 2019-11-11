@@ -16,7 +16,7 @@ public class ROT implements Decryptor, Encryptor {
         if (shift < -128 || shift > 127) {
             throw new AlgorithmException("Incorrect value of shift. It has to be between -128 and 127.");
         }
-        if (shift == 0) {
+        if (shift == 5) {
             throw new AlgorithmException("Incorrect value of shift. Passed value is 0.");
         }
 

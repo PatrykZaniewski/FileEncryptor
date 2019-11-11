@@ -17,10 +17,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -126,12 +125,17 @@ public class MainWindowController {
         animateNode(stepThreeDecVBox);
     }
 
+    byte[] test;
+
     @FXML
     public boolean startEnc() throws AlgorithmException, IOException {
         String filePath = filePathTextFieldEnc.getText();
         String savePath = directoryTextFieldEnc.getText();
         String key = keyInput.getText();
         int index = algoComboBox.getSelectionModel().getSelectedIndex();
+        String[] nameSplitted = filePath.split("\\.");
+        String ext = nameSplitted[nameSplitted.length - 1];
+        ext = "." + ext;
 
         /*if (index < 3) {
             if ((key.length() != 16) && (key.length() != 32)) {
@@ -157,7 +161,7 @@ public class MainWindowController {
             return false;
         } else {
             Creator creator = new Creator();
-            String msg = new String(Files.readAllBytes(Paths.get(filePath)));
+            byte[] msg = Files.readAllBytes(Paths.get(filePath));
             byte[] encodedMsg = null;
             String algorithm = null;
             String mode = null;
@@ -169,7 +173,7 @@ public class MainWindowController {
                 mode = splitted[3];
 
                 Encryptor encryptor = creator.createEncryptor(algorithm, mode, key, null);
-                encodedMsg = encryptor.encrypt(msg.getBytes());
+                encodedMsg = encryptor.encrypt(msg);
                 byte[] iv = encryptor.getIv();
 
                 if (iv == null) {
@@ -178,17 +182,20 @@ public class MainWindowController {
                     obj.put("Iv", Base64.getEncoder().encodeToString(iv));
                 }
                 obj.put("Mode", mode);
+                test = msg;
             } else {
                 algorithm = "ROT";
                 int shift = Integer.parseInt(key);
                 Encryptor encryptor = creator.createEncryptor(algorithm, shift);
-                encodedMsg = encryptor.encrypt(msg.getBytes());
+                encodedMsg = encryptor.encrypt(msg);
             }
             obj.put("Algorithm", algorithm);
             obj.put("Encrypted", Base64.getEncoder().encodeToString(encodedMsg));
+            obj.put("Extension", ext);
 
             Date date = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HHmmss");
+
             FileWriter file = new FileWriter(savePath + "/encrypted_" + algorithm + "_" + formatter.format(date) + ".json");
             file.write(obj.toJSONString());
             file.close();
@@ -215,7 +222,8 @@ public class MainWindowController {
             return false;
         }
 
-        Object obj = new JSONParser().parse(new FileReader(filePath));
+        FileReader file = new FileReader(filePath);
+        Object obj = new JSONParser().parse(file);
         JSONObject jsonObject = (JSONObject) obj;
 
         String algorithm = (String) jsonObject.get("Algorithm");
@@ -236,13 +244,23 @@ public class MainWindowController {
             enc = (String) jsonObject.get("Encrypted");
             decryptor = creator.createDecryptor(algorithm, mode, keyDec, ivByte);
         }
+        file.close();
         decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
-
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HHmmss");
-        FileWriter file = new FileWriter(savePath + "/decrypted_" + algorithm + "_" + formatter.format(date) + ".txt");
-        file.write(new String(decoded_msg));
-        file.close();
+
+        String ext = (String) jsonObject.get("Extension");
+        if(ext.equals(".jpg") || ext.equals(".png")) {
+            BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(decoded_msg));
+            File out = new File(savePath + "/decrypted" + algorithm + "_" + formatter.format(date) + ext);
+            ext = ext.substring(1);
+            ImageIO.write(bufferedImage, ext, out);
+        }
+        else {
+            FileWriter filereader = new FileWriter(savePath + "/decrypted_" + algorithm + "_" + formatter.format(date) + ".txt");
+            filereader.write(new String(decoded_msg));
+            filereader.close();
+        }
         return true;
     }
 
@@ -313,8 +331,8 @@ public class MainWindowController {
 
     private void openFileChooser(TextField pathField, VBox toAnimate) {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT (*.txt)", "*.txt", "*.json");
-        fileChooser.getExtensionFilters().add(extFilter);
+        //FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT (*.txt)", "*.txt", "*.json");
+        //fileChooser.getExtensionFilters().add(extFilter);
         Stage mainStage = (Stage) savePathButtonEnc.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(mainStage);
         if (selectedFile != null) {
