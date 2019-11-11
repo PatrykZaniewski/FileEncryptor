@@ -1,5 +1,7 @@
 package engine;
 
+import engine.exceptions.AlgorithmException;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import java.security.*;
@@ -19,23 +21,23 @@ public class RC2 implements Decryptor, Encryptor {
 
     private final String[] supportedModesArray = {"ECB", "CBC", "CFB"};
 
-    public RC2(String mode, String key, byte[] iv, int operationMode) {
+    public RC2(String mode, String key, byte[] iv, int operationMode) throws AlgorithmException {
         // "iv" argument is checked for null only if mode=="CBC"
         if (mode == null || key == null) {
             throw new IllegalArgumentException("Null value has been passed.");
         }
         if (operationMode != Cipher.DECRYPT_MODE && operationMode != Cipher.ENCRYPT_MODE) {
-            throw new IllegalArgumentException("Unsupported operation mode.");
+            throw new AlgorithmException("Unsupported operation mode.");
         }
         if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
-            throw new IllegalArgumentException("RC2 CBC/CFB Decryption requires 8-bit iv vector.");
+            throw new AlgorithmException("RC2 CBC/CFB Decryption requires 8-bit iv vector.");
         }
         if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("RC2 CBC/CFB Encryption does not accept non-null value in IV.");
+            throw new AlgorithmException("RC2 CBC/CFB Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
         if (!supportedModes.contains(mode)) {
-            throw new IllegalArgumentException("Unsupported mode.");
+            throw new AlgorithmException("Unsupported mode.");
         }
 
         this.algorithmMode = mode;
@@ -63,7 +65,7 @@ public class RC2 implements Decryptor, Encryptor {
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
                     e.printStackTrace();
-                    throw new IllegalStateException("Unable to create a cipher object.");
+                    throw new AlgorithmException("Unable to create a cipher object.");
                 }
                 break;
             }
@@ -80,12 +82,12 @@ public class RC2 implements Decryptor, Encryptor {
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey);
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
-                    throw new IllegalStateException("Unable to create a cipher object.");
+                    throw new AlgorithmException("Unable to create a cipher object.");
                 }
                 break;
             }
             default:
-                throw new IllegalArgumentException("Unsupported operation mode.");
+                throw new AlgorithmException("Unsupported operation mode.");
         }
     }
 
@@ -105,7 +107,7 @@ public class RC2 implements Decryptor, Encryptor {
         }
     }
 
-    public byte[] decrypt(byte[] data) {
+    public byte[] decrypt(byte[] data) throws AlgorithmException{
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
@@ -117,7 +119,7 @@ public class RC2 implements Decryptor, Encryptor {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             e.printStackTrace();
-            throw new IllegalStateException("Cannot decrypt given data.");
+            throw new AlgorithmException("Cannot decrypt given data. Most likely wrong wrong decryption key.");
         }
     }
 

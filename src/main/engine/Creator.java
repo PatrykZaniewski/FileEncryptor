@@ -59,7 +59,7 @@ public class Creator implements CipherCreator {
         switch (algorithm){
             case "ROT":{
                 //TODO ROT decryption
-                throw new UnsupportedOperationException();
+                throw new UnsupportedOperationException("TODO");
             }
             default:{
                 throw new AlgorithmException("Not supported algorithm!");

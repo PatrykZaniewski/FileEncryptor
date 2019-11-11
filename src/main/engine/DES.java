@@ -1,5 +1,7 @@
 package engine;
 
+import engine.exceptions.AlgorithmException;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -20,23 +22,23 @@ public class DES implements Encryptor, Decryptor {
 
     private final String[] supportedModesArray = {"ECB", "CBC", "CFB"};
 
-    public DES(String mode, String key, byte[] iv, int operationMode) {
+    public DES(String mode, String key, byte[] iv, int operationMode) throws AlgorithmException {
         // "iv" argument is checked for null only if mode=="CBC"
         if (mode == null || key == null) {
             throw new IllegalArgumentException("Null value has been passed.");
         }
         if (operationMode != Cipher.DECRYPT_MODE && operationMode != Cipher.ENCRYPT_MODE) {
-            throw new IllegalArgumentException("Unsupported operation mode.");
+            throw new AlgorithmException("Unsupported operation mode.");
         }
         if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 8)) {
-            throw new IllegalArgumentException("DES CBC/CFB Decryption requires 8-bit iv vector.");
+            throw new AlgorithmException("DES CBC/CFB Decryption requires 8-bit iv vector.");
         }
         if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("DES CBC/CFB Encryption does not accept non-null value in IV.");
+            throw new AlgorithmException("DES CBC/CFB Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
         if (!supportedModes.contains(mode)) {
-            throw new IllegalArgumentException("Unsupported mode.");
+            throw new AlgorithmException("Unsupported mode.");
         }
 
         this.algorithmMode = mode;
@@ -64,7 +66,7 @@ public class DES implements Encryptor, Decryptor {
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
                     e.printStackTrace();
-                    throw new IllegalStateException("Unable to create a cipher object.");
+                    throw new AlgorithmException("Unable to create a cipher object.");
                 }
                 break;
             }
@@ -81,12 +83,12 @@ public class DES implements Encryptor, Decryptor {
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey);
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
-                    throw new IllegalStateException("Unable to create a cipher object.");
+                    throw new AlgorithmException("Unable to create a cipher object.");
                 }
                 break;
             }
             default:
-                throw new IllegalArgumentException("Unsupported operation mode.");
+                throw new AlgorithmException("Unsupported operation mode.");
         }
     }
 
@@ -118,7 +120,7 @@ public class DES implements Encryptor, Decryptor {
         }
     }
 
-    public byte[] decrypt(byte[] data) {
+    public byte[] decrypt(byte[] data) throws AlgorithmException{
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
@@ -129,7 +131,7 @@ public class DES implements Encryptor, Decryptor {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
-            throw new IllegalStateException("Cannot encrypt given data.");
+            throw new AlgorithmException("Cannot encrypt given data. Most likely wrong wrong decryption key.");
         }
     }
 

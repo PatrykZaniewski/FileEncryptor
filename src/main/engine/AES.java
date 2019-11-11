@@ -1,5 +1,6 @@
 package engine;
 
+import engine.exceptions.AlgorithmException;
 import sun.misc.BASE64Decoder;
 
 import javax.crypto.*;
@@ -24,23 +25,23 @@ public class AES implements Encryptor, Decryptor {
 
     private final String[] supportedModesArray = {"ECB", "CBC", "CFB"};
 
-    public AES(String mode, String key, byte[] iv, int operationMode) {
+    public AES(String mode, String key, byte[] iv, int operationMode) throws AlgorithmException {
         // "iv" argument is checked for null only if mode=="CBC"
         if (mode == null || key == null) {
             throw new IllegalArgumentException("Null value has been passed.");
         }
         if (operationMode != Cipher.DECRYPT_MODE && operationMode != Cipher.ENCRYPT_MODE) {
-            throw new IllegalArgumentException("Unsupported operation mode.");
+            throw new AlgorithmException("Unsupported operation mode.");
         }
         if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 16)) {
-            throw new IllegalArgumentException("AES CBC/CFB Decryption requires 16-bit iv vector.");
+            throw new AlgorithmException("AES CBC/CFB Decryption requires 16-bit iv vector.");
         }
         if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new IllegalArgumentException("AES CBC/CFB Encryption does not accept non-null value in IV.");
+            throw new AlgorithmException("AES CBC/CFB Encryption does not accept non-null value in IV.");
         }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
         if (!supportedModes.contains(mode)) {
-            throw new IllegalArgumentException("Unsupported mode.");
+            throw new AlgorithmException("Unsupported mode.");
         }
 
         this.algorithmMode = mode;
@@ -68,7 +69,7 @@ public class AES implements Encryptor, Decryptor {
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
                     e.printStackTrace();
-                    throw new IllegalStateException("Unable to create a cipher object.");
+                    throw new AlgorithmException("Unable to create a cipher object.");
                 }
                 break;
             }
@@ -86,12 +87,12 @@ public class AES implements Encryptor, Decryptor {
                     }
                 } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
                     e.printStackTrace();
-                    throw new IllegalStateException("Unable to create a cipher object.");
+                    throw new AlgorithmException("Unable to create a cipher object.");
                 }
                 break;
             }
             default:
-                throw new IllegalArgumentException("Unsupported operation mode.");
+                throw new AlgorithmException("Unsupported operation mode.");
         }
     }
 
@@ -111,7 +112,7 @@ public class AES implements Encryptor, Decryptor {
         }
     }
 
-    public byte[] decrypt(byte[] data) {
+    public byte[] decrypt(byte[] data) throws AlgorithmException{
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
@@ -123,7 +124,7 @@ public class AES implements Encryptor, Decryptor {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             e.printStackTrace();
-            throw new IllegalStateException("Cannot decrypt given data.");
+            throw new AlgorithmException("Cannot decrypt given data. Most likely wrong wrong decryption key.");
         }
     }
 
