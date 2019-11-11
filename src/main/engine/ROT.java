@@ -33,7 +33,7 @@ public class ROT implements Decryptor, Encryptor {
             return null;
         }
 
-        byte shiftByte = (byte) (shift & 0x7F);
+        byte shiftByte = (byte) (shift & 0xFF);
         for (int i = 0; i < data.length; i++) {
             data[i] = (byte) (data[i] - shiftByte);
         }
@@ -50,7 +50,7 @@ public class ROT implements Decryptor, Encryptor {
             return null;
         }
 
-        byte shiftByte = (byte) (shift & 0x7F);
+        byte shiftByte = (byte) (shift & 0xFF);
         for (int i = 0; i < data.length; i++) {
             data[i] = (byte) (data[i] + shiftByte);
         }
