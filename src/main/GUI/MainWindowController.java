@@ -65,6 +65,8 @@ public class MainWindowController {
     @FXML
     private TextField keyDecInput;
 
+    private static final int MAX_KEY_LENGTH = 50;
+
     @FXML
     public void openDirectoryChooserEnc() {
         openDirecChooser(directoryTextFieldEnc, startEncButton);
@@ -183,6 +185,9 @@ public class MainWindowController {
         } else if (key.equals("")) {
             showError(3);
             return false;
+        } else if (key.length() > MAX_KEY_LENGTH) {
+            showError(9);
+            return false;
         } else {
             Creator creator = new Creator();
             byte[] msg = Files.readAllBytes(Paths.get(filePath));
@@ -256,6 +261,9 @@ public class MainWindowController {
         } else if (savePath.isEmpty()) {
             showError(8);
             return false;
+        } else if (keyDec.length() > MAX_KEY_LENGTH) {
+            showError(9);
+            return false;
         }
 
         FileReader file = new FileReader(filePath);
@@ -323,20 +331,20 @@ public class MainWindowController {
         String mes;
         switch (code) {
             case 1:
-                mes = "Nie można zapisać pliku w podanej lokalizacji";
+                mes = "Nie można zapisać pliku w podanej lokalizacji.";
                 break;
             case 2:
-                mes = "Podany plik nie istnieje";
+                mes = "Podany plik nie istnieje.";
                 break;
             case 3:
-                mes = "Podaj klucz, any kontynuować";
+                mes = "Podaj klucz, any kontynuować.";
                 break;
-            case 4:
+            /*case 4:
                 mes = "Nieprawidłowa długość klucza. Dla trybu AES wynosi ona 16 lub 32 znaków.";
                 break;
             case 5:
                 mes = "Nieprawidłowa długość klucza. Dla trybu AES wynosi ona 8 znaków.";
-                break;
+                break; */
             case 6:
                 mes = "Przesunięcie dla trybu ROT musi być liczbą.";
                 break;
@@ -345,6 +353,9 @@ public class MainWindowController {
                 break;
             case 8:
                 mes = "Nie podano folderu docelowego.";
+                break;
+            case 9:
+                mes = "Podany klucz jest za długi. Maksymalna długość wynosi 50 znaków.";
                 break;
             default:
                 mes = "Wystąpił bład";

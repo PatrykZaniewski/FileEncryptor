@@ -60,7 +60,7 @@
                                                 </HBox>
                                                 <HBox prefHeight="0.0" prefWidth="100.0">
                                                     <children>
-                                                        <TextField fx:id="filePathTextFieldEnc" onKeyTyped="#openStepTwoEnc" prefHeight="37.0" prefWidth="414.0" promptText="Nie wybrano pliku">
+                                                        <TextField fx:id="filePathTextFieldEnc" editable="false" onKeyTyped="#openStepTwoEnc" prefHeight="37.0" prefWidth="414.0" promptText="Nie wybrano pliku">
                                                             <font>
                                                                 <Font size="16.0" />
                                                             </font>
@@ -235,7 +235,7 @@
                                                 </HBox>
                                                 <HBox prefHeight="27.0" prefWidth="500.0">
                                                     <children>
-                                                        <TextField fx:id="filePathTextFieldDec" onKeyTyped="#openStepTwoDec" prefHeight="37.0" prefWidth="414.0" promptText="Nie wybrano pliku">
+                                                        <TextField fx:id="filePathTextFieldDec" editable="false" onKeyTyped="#openStepTwoDec" prefHeight="37.0" prefWidth="414.0" promptText="Nie wybrano pliku">
                                                             <font>
                                                                 <Font size="16.0" />
                                                             </font>
