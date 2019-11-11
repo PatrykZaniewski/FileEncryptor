@@ -89,7 +89,7 @@ public class MainWindowController {
 
     @FXML
     public void openFileChooserEnc() {
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT, JPEG, PNG (*.txt, *.jpeg, *.png)", "*.txt", "*.jpeg", ".png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT, JPG, PNG (*.txt, *.jpg, *jpeg, *.png)", "*.txt", "*.jpg", "*.jpeg", ".png");
         openFileChooser(filePathTextFieldEnc, stepTwoEncVBox, extFilter);
     }
 
@@ -299,7 +299,7 @@ public class MainWindowController {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HHmmss");
 
         String ext = (String) jsonObject.get("Extension");
-        if(ext.equals(".jpg") || ext.equals(".png")) {
+        if(ext.equals(".jpg") || ext.equals(".png") || ext.equals(".jpeg")) {
             BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(decoded_msg));
             File out = new File(savePath + "/decrypted" + algorithm + "_" + formatter.format(date) + ext);
             ext = ext.substring(1);
