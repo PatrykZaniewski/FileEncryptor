@@ -120,7 +120,7 @@ public class DES implements Encryptor, Decryptor {
         }
     }
 
-    public byte[] decrypt(byte[] data) throws AlgorithmException{
+    public byte[] decrypt(byte[] data) throws AlgorithmException {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }

@@ -110,13 +110,10 @@ public class MainWindowController {
     @FXML
     public void setAlgorithm() {
         animateNode(stepThreeEncVBox);
-        if(algoComboBox.getSelectionModel().getSelectedIndex() == 6)
-        {
+        if (algoComboBox.getSelectionModel().getSelectedIndex() == 6) {
             keyLabel.setText("Przesunięcie:");
             keyLabel.setPrefWidth(165);
-        }
-        else
-        {
+        } else {
             keyLabel.setText("Klucz:");
             keyLabel.setPrefWidth(46);
         }
@@ -154,8 +151,8 @@ public class MainWindowController {
             }
         }
 
-        if(index < 6){
-            String[] splitted= algoComboBox.getValue().split("\\s+");
+        if (index < 6) {
+            String[] splitted = algoComboBox.getValue().split("\\s+");
             algorithm = splitted[0];
             mode = splitted[3];
         }
@@ -169,8 +166,7 @@ public class MainWindowController {
         } else if (key.equals("")) {
             showError(3);
             return false;
-        }
-        else{
+        } else {
             //"ssshhhhhhhhhhh!!!!"
             Creator creator = new Creator();
             Encryptor encryptor = creator.createEncryptor(algorithm, mode, key, null);
@@ -180,7 +176,7 @@ public class MainWindowController {
             byte[] iv = encryptor.getIv();
 
             System.out.println(Base64.getEncoder().encodeToString(encodedMsg));
-            if(iv != null) {
+            if (iv != null) {
                 System.out.println(Base64.getEncoder().encodeToString(iv));
             }
 
