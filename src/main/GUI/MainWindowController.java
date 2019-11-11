@@ -24,7 +24,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Date;
 
 public class MainWindowController {
 
@@ -184,7 +186,10 @@ public class MainWindowController {
             }
             obj.put("Algorithm", algorithm);
             obj.put("Encrypted", Base64.getEncoder().encodeToString(encodedMsg));
-            FileWriter file = new FileWriter(savePath + "/cipherOut.json");
+
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HHmmss");
+            FileWriter file = new FileWriter(savePath + "/encrypted_" + algorithm + "_" + formatter.format(date) + ".json");
             file.write(obj.toJSONString());
             file.close();
 
@@ -219,11 +224,9 @@ public class MainWindowController {
         Decryptor decryptor;
         byte[] decoded_msg = null;
 
-        if(algorithm.equals("ROT"))
-        {
+        if (algorithm.equals("ROT")) {
             decryptor = creator.createDecryptor("ROT", Integer.parseInt(keyDec));
-        }
-        else {
+        } else {
             String mode = (String) jsonObject.get("Mode");
             String iv = (String) jsonObject.get("Iv");
             byte[] ivByte = null;
@@ -234,7 +237,10 @@ public class MainWindowController {
             decryptor = creator.createDecryptor(algorithm, mode, keyDec, ivByte);
         }
         decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
-        FileWriter file = new FileWriter(savePath + "/trolololo.txt");
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HHmmss");
+        FileWriter file = new FileWriter(savePath + "/decrypted_" + algorithm + "_" + formatter.format(date) + ".txt");
         file.write(new String(decoded_msg));
         file.close();
         return true;
