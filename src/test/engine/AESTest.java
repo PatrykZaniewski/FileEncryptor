@@ -110,7 +110,7 @@ class AESTest {
     }
 
     @Test
-    void testDecrypt_ValidData_ShouldReturnDecryptedData() throws AlgorithmException {
+    void testSuccessDecrypt() throws AlgorithmException {
         //given
         String mode = "CBC";
         String key = "123";
@@ -140,6 +140,43 @@ class AESTest {
         //then
         assertNotNull(aes.decrypt(encryptedData), "The return object is null even though the data is correct.");
         assertNotEquals(decryptedData.length, 0, "The decrypted data vector is empty.");
+        assertEquals(decryptedData, plainData, "Decrypted message isn not equal to encrypted.");
+    }
+
+    @Test
+    void testDecryptionWithIncorrectKey_ShouldThrowException() {
+        //given
+        String mode = "CBC";
+        String key = "123";
+        byte[] iv = new byte[16];
+        int operationMode = Cipher.ENCRYPT_MODE;
+
+        byte[] plainData = "alamakota".getBytes(StandardCharsets.UTF_8);
+        AES aes = createAesInstance_ValidData_HelperMethod(mode, key, iv, operationMode);
+        byte[] encryptedData = null;
+        try {
+            encryptedData = aes.encrypt(plainData);
+        } catch (Exception e) {
+            fail("Exception thrown even though all arguments are correct");
+        }
+
+        operationMode = Cipher.DECRYPT_MODE;
+
+        //when
+        String badkey = "321";
+        aes = createAesInstance_ValidData_HelperMethod(mode, badkey, iv, operationMode);
+        AES finalAes = aes;
+        byte[] finalEncryptedData = encryptedData;
+
+        //then
+        assertThrows(AlgorithmException.class, () -> {
+            finalAes.decrypt(finalEncryptedData);
+        });
+    }
+
+    @Test
+    void testDecrypt_ValidData_ShouldReturnDecryptedData() throws AlgorithmException {
+
     }
 
     @Test
