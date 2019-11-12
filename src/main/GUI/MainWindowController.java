@@ -220,6 +220,8 @@ public class MainWindowController {
             file.write(obj.toJSONString());
             file.close();
 
+            showConfirmation("enc");
+
             return true;
         }
     }
@@ -295,6 +297,9 @@ public class MainWindowController {
             filereader.write(new String(decoded_msg));
             filereader.close();
         }
+
+        showConfirmation("dec");
+
         return true;
     }
 
@@ -310,6 +315,18 @@ public class MainWindowController {
         } else {
             return 1;
         }
+    }
+
+    private void showConfirmation(String oprType) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Koniec!");
+        if (oprType.equals("dec")) {
+            alert.setHeaderText("Ukończono deszfrację!");
+        } else {
+            alert.setHeaderText("Ukończono szyfrowanie!");
+        }
+        alert.initOwner(savePathButtonEnc.getScene().getWindow());
+        alert.showAndWait();
     }
 
     private void showError(int code) {
