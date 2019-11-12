@@ -89,7 +89,7 @@ public class MainWindowController {
 
     @FXML
     public void openFileChooserEnc() {
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT, JPG, PNG (*.txt, *.jpg, *jpeg, *.png)", "*.txt", "*.jpg", "*.jpeg", ".png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT, JPG, PNG (*.txt, *.jpg, *jpeg, *.png)", "*.txt", "*.jpg", "*.jpeg", "*.png");
         openFileChooser(filePathTextFieldEnc, stepTwoEncVBox, extFilter);
     }
 
