@@ -140,7 +140,7 @@ class AESTest {
         //then
         assertNotNull(aes.decrypt(encryptedData), "The return object is null even though the data is correct.");
         assertNotEquals(decryptedData.length, 0, "The decrypted data vector is empty.");
-        assertEquals(decryptedData.toString(), plainData.toString(), "Decrypted message isn not equal to encrypted.");
+        assertArrayEquals(decryptedData, plainData, "Decrypted message is not equal to encrypted.");
     }
 
     @Test
