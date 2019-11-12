@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.crypto.Cipher;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -114,21 +115,30 @@ class AESTest {
         String mode = "CBC";
         String key = "123";
         byte[] iv = new byte[16];
-        int operationMode = Cipher.DECRYPT_MODE;
+        int operationMode = Cipher.ENCRYPT_MODE;
 
-        byte[] plainData = "alamakotaalamako".getBytes(StandardCharsets.UTF_8);
+        byte[] plainData = "alamakota".getBytes(StandardCharsets.UTF_8);
+        AES aes = createAesInstance_ValidData_HelperMethod(mode, key, iv, operationMode);
+        byte[] encryptedData = null;
+        try {
+            encryptedData = aes.encrypt(plainData);
+        } catch (Exception e) {
+            fail("Exception thrown even though all arguments are correct");
+        }
+
+        operationMode = Cipher.DECRYPT_MODE;
 
         //when
-        AES aes = createAesInstance_ValidData_HelperMethod(mode, key, iv, operationMode);
+        aes = createAesInstance_ValidData_HelperMethod(mode, key, iv, operationMode);
         byte[] decryptedData = null;
         try {
-            decryptedData = aes.decrypt(plainData);
+            decryptedData = aes.decrypt(encryptedData);
         } catch (Exception e) {
             fail("Exception thrown even though all arguments are correct");
         }
 
         //then
-        assertNotNull(aes.decrypt(plainData), "The return object is null even though the data is correct.");
+        assertNotNull(aes.decrypt(encryptedData), "The return object is null even though the data is correct.");
         assertNotEquals(decryptedData.length, 0, "The decrypted data vector is empty.");
     }
 
