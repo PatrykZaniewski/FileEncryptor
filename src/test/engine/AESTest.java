@@ -109,8 +109,27 @@ class AESTest {
     }
 
     @Test
-    void testDecrypt_ValidData_ShouldReturnDecryptedData() {
+    void testDecrypt_ValidData_ShouldReturnDecryptedData() throws AlgorithmException {
+        //given
+        String mode = "CBC";
+        String key = "123";
+        byte[] iv = new byte[16];
+        int operationMode = Cipher.DECRYPT_MODE;
 
+        byte[] plainData = "alamakotaalamako".getBytes(StandardCharsets.UTF_8);
+
+        //when
+        AES aes = createAesInstance_ValidData_HelperMethod(mode, key, iv, operationMode);
+        byte[] decryptedData = null;
+        try {
+            decryptedData = aes.decrypt(plainData);
+        } catch (Exception e) {
+            fail("Exception thrown even though all arguments are correct");
+        }
+
+        //then
+        assertNotNull(aes.decrypt(plainData), "The return object is null even though the data is correct.");
+        assertNotEquals(decryptedData.length, 0, "The decrypted data vector is empty.");
     }
 
     @Test
