@@ -89,7 +89,7 @@ class CreatorTest {
         assertEquals(result.getAlgorithmName(), algoName, "The algorithm name is incorrect.");
         assertEquals(result.getAlgorithmMode(), mode, "The encryption modes do not match.");
         assertEquals(result.getKey(), key, "The keys do not match.");
-        assertNotNull(result.getIv(), "IV has not been generated.");
+        assertArrayEquals(result.getIv(), iv, "The IVs do not match.");
         assertEquals(result.getOperationMode(), operationMode, "The operation mode is incorrect.");
 
         return result;
@@ -129,7 +129,7 @@ class CreatorTest {
     void createEncryptor_Aes_ShouldReturnAesInstance() {
         //given
         String algorithm = "AES";
-        byte[] iv = null;
+        byte[] iv = new byte[16];
 
         //when & then
         Encryptor result = createEncryptor_ValidData_HelperMethod(algorithm, iv);
@@ -140,7 +140,7 @@ class CreatorTest {
     void createEncryptor_Des_ShouldReturnDesInstance() {
         //given
         String algorithm = "DES";
-        byte[] iv = null;
+        byte[] iv = new byte[8];
 
         //when & then
         Encryptor result = createEncryptor_ValidData_HelperMethod(algorithm, iv);
@@ -151,7 +151,7 @@ class CreatorTest {
     void createEncryptor_Rc2_ShouldReturnRc2Instance() {
         //given
         String algorithm = "RC2";
-        byte[] iv = null;
+        byte[] iv = new byte[8];
 
         //when & then
         Encryptor result = createEncryptor_ValidData_HelperMethod(algorithm, iv);
@@ -162,7 +162,7 @@ class CreatorTest {
     void createEncryptor_Blowfish_ShouldReturnBlowfishInstance() {
         //given
         String algorithm = "Blowfish";
-        byte[] iv = null;
+        byte[] iv = new byte[8];
 
         //when & then
         Encryptor result = createEncryptor_ValidData_HelperMethod(algorithm, iv);
@@ -240,7 +240,7 @@ class CreatorTest {
         assertEquals(result.getAlgorithmName(), algoName, "The algorithm name is incorrect.");
         assertEquals(result.getAlgorithmMode(), mode, "The encryption modes do not match.");
         assertEquals(result.getKey(), key, "The keys do not match.");
-        assertNotNull(result.getIv(), "The IV parameter is null");
+        assertArrayEquals(result.getIv(), iv, "The IVs do not match");
         assertEquals(result.getOperationMode(), operationMode, "The operation mode is incorrect.");
 
         return result;
