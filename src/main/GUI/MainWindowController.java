@@ -100,7 +100,7 @@ public class MainWindowController {
 
     @FXML
     public void openFileChooserDec() {
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki JSON (*.json)",  "*.json");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki JSON (*.json)", "*.json");
         openFileChooser(filePathTextFieldDec, stepTwoDecVBox, extFilter);
 
         String filePath = filePathTextFieldDec.getText();
@@ -162,7 +162,7 @@ public class MainWindowController {
         } else if (filePath.isEmpty()) {
             showError(7);
             return false;
-        }  else if (savePath.isEmpty()) {
+        } else if (savePath.isEmpty()) {
             showError(8);
             return false;
         } else if (checkFiles == 2) {
@@ -200,7 +200,7 @@ public class MainWindowController {
             } else {
                 algorithm = "ROT";
 
-                if(!isNumeric(key)) {
+                if (!isNumeric(key)) {
                     showError(6);
                     return false;
                 } else {
@@ -281,18 +281,22 @@ public class MainWindowController {
             decryptor = creator.createDecryptor(algorithm, mode, keyDec, ivByte);
         }
         file.close();
-        decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
+        try {
+            decoded_msg = decryptor.decrypt(Base64.getDecoder().decode(enc));
+        } catch (AlgorithmException e) {
+            showError(10);
+            return false;
+        }
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HHmmss");
 
         String ext = (String) jsonObject.get("Extension");
-        if(ext.equals(".jpg") || ext.equals(".png") || ext.equals(".jpeg")) {
+        if (ext.equals(".jpg") || ext.equals(".png") || ext.equals(".jpeg")) {
             BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(decoded_msg));
             File out = new File(savePath + "/decrypted" + algorithm + "_" + formatter.format(date) + ext);
             ext = ext.substring(1);
             ImageIO.write(bufferedImage, ext, out);
-        }
-        else {
+        } else {
             FileWriter filereader = new FileWriter(savePath + "/decrypted_" + algorithm + "_" + formatter.format(date) + ".txt");
             filereader.write(new String(decoded_msg));
             filereader.close();
@@ -358,6 +362,9 @@ public class MainWindowController {
                 break;
             case 9:
                 mes = "Podany klucz jest za długi. Maksymalna długość wynosi 50 znaków.";
+                break;
+            case 10:
+                mes = "Podany klucz jest nieprawidłowy.";
                 break;
             default:
                 mes = "Wystąpił bład";

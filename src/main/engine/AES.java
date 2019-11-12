@@ -1,15 +1,10 @@
 package engine;
 
 import engine.exceptions.AlgorithmException;
-import sun.misc.BASE64Decoder;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
 import java.security.*;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -107,7 +102,6 @@ public class AES implements Encryptor, Decryptor {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
-            e.printStackTrace();
             throw new IllegalStateException("Cannot encrypt given data.");
         }
     }
@@ -123,7 +117,7 @@ public class AES implements Encryptor, Decryptor {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
-            e.printStackTrace();
+            ;
             throw new AlgorithmException("Cannot decrypt given data. Most likely wrong wrong decryption key.");
         }
     }
