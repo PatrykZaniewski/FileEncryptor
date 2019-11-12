@@ -36,9 +36,6 @@ public class AES implements Encryptor, Decryptor {
         if (((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.DECRYPT_MODE) && (iv == null || iv.length != 16)) {
             throw new AlgorithmException("AES CBC/CFB Decryption requires 16-bit iv vector.");
         }
-        if ((mode.equals("CBC") || mode.equals("CFB")) && operationMode == Cipher.ENCRYPT_MODE && iv != null) {
-            throw new AlgorithmException("AES CBC/CFB Encryption does not accept non-null value in IV.");
-        }
         List<String> supportedModes = Arrays.asList(supportedModesArray);
         if (!supportedModes.contains(mode)) {
             throw new AlgorithmException("Unsupported mode.");
@@ -55,14 +52,19 @@ public class AES implements Encryptor, Decryptor {
                 try {
                     if ("CBC".equals(mode) || mode.equals("CFB")) {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
-                        byte[] byteIv = new byte[16];
-                        SecureRandom random = new SecureRandom();
-                        random.nextBytes(byteIv);
-                        IvParameterSpec ivParameterSpec = new IvParameterSpec(byteIv);
+
+                        IvParameterSpec ivParameterSpec;
+                        if (this.iv == null){
+                            byte[] byteIv = new byte[16];
+                            SecureRandom random = new SecureRandom();
+                            random.nextBytes(byteIv);
+                            ivParameterSpec = new IvParameterSpec(byteIv);
+                            this.iv = ivParameterSpec.getIV();
+                        } else {
+                            ivParameterSpec = new IvParameterSpec(this.iv);
+                        }
 
                         this.cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
-
-                        this.iv = ivParameterSpec.getIV();
                     } else {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -79,8 +81,6 @@ public class AES implements Encryptor, Decryptor {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         IvParameterSpec ivParameterSpec = new IvParameterSpec(this.iv);
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
-
-                        this.iv = ivParameterSpec.getIV();
                     } else {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         this.cipher.init(Cipher.DECRYPT_MODE, secretKey);
