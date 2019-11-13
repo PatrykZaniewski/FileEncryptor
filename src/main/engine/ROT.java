@@ -25,7 +25,7 @@ public class ROT implements Decryptor, Encryptor {
     }
 
     @Override
-    public byte[] decrypt(byte[] data) throws AlgorithmException {
+    public byte[] decrypt(byte[] data) {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
@@ -63,8 +63,7 @@ public class ROT implements Decryptor, Encryptor {
 
         return dataCopy;
     }
-
-
+    
     @Override
     public String getAlgorithmName() {
         return algorithmName;
