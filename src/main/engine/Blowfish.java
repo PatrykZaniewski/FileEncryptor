@@ -120,7 +120,6 @@ public class Blowfish implements Decryptor, Encryptor {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
-            e.printStackTrace();
             throw new AlgorithmException("Cannot decrypt given data. Most likely wrong wrong decryption key.");
         }
     }

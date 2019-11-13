@@ -205,7 +205,13 @@ public class MainWindowController {
                     return false;
                 } else {
                     int shift = Integer.parseInt(key);
-                    Encryptor encryptor = creator.createEncryptor(algorithm, shift);
+                    Encryptor encryptor;
+                    try {
+                        encryptor = creator.createEncryptor(algorithm, shift);
+                    } catch (AlgorithmException e) {
+                        showError(11);
+                        return false;
+                    }
                     encodedMsg = encryptor.encrypt(msg);
                 }
             }
@@ -335,6 +341,7 @@ public class MainWindowController {
 
     private void showError(int code) {
         String mes;
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         switch (code) {
             case 1:
                 mes = "Nie można zapisać pliku w podanej lokalizacji.";
@@ -366,12 +373,15 @@ public class MainWindowController {
             case 10:
                 mes = "Podany klucz jest nieprawidłowy.";
                 break;
+            case 11:
+                mes = "Podane przesunięcie powinno być pomiędzy -127 a 128";
+                alert.setContentText("Wartość nie może być 5");
+                break;
             default:
                 mes = "Wystąpił bład";
                 break;
         }
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Błąd!");
         alert.setHeaderText(mes);
         alert.initOwner(savePathButtonEnc.getScene().getWindow());

@@ -49,7 +49,7 @@ public class AES implements Encryptor, Decryptor {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
 
                         IvParameterSpec ivParameterSpec;
-                        if (this.iv == null){
+                        if (this.iv == null) {
                             byte[] byteIv = new byte[16];
                             SecureRandom random = new SecureRandom();
                             random.nextBytes(byteIv);
@@ -106,7 +106,7 @@ public class AES implements Encryptor, Decryptor {
         }
     }
 
-    public byte[] decrypt(byte[] data) throws AlgorithmException{
+    public byte[] decrypt(byte[] data) throws AlgorithmException {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
@@ -117,7 +117,6 @@ public class AES implements Encryptor, Decryptor {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
-            ;
             throw new AlgorithmException("Cannot decrypt given data. Most likely wrong wrong decryption key.");
         }
     }
