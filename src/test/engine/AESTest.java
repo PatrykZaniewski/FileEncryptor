@@ -72,7 +72,7 @@ class AESTest {
 
         //then
         String errorMessage = "The class didn't throw an IllegalArgumentException indicating that it recognized a mode is null.";
-        assertThrows(AlgorithmException.class, () -> new AES(null, key, iv, operationMode), errorMessage);
+        assertThrows(AlgorithmException.class, () -> new AES(mode, key, iv, operationMode), errorMessage);
     }
 
     @Test
