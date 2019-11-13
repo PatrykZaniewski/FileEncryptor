@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import javax.crypto.Cipher;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,14 +38,14 @@ class AESTest {
         assertEquals(aes.getAlgorithmName(), "AES", "The algorithmName value is incorrect.");
         assertEquals(aes.getAlgorithmMode(), mode, "The algorithmMode value is incorrect.");
         assertEquals(aes.getKey(), key, "The key value is incorrect");
-        assertNotNull(aes.getIv(), "The IV parameter is null");
+        assertArrayEquals(aes.getIv(), iv, "The IVs do not match");
         assertEquals(aes.getOperationMode(), operationMode, "The operationMode value is incorrect.");
     }
 
     @Test
-    void testInitialization_NullMode_ShouldThrowException() {
+    void testInitialization_NullData_ShouldThrowException() {
         //given
-        String mode = null;
+        String mode = "CBC";
         String key = "123";
         byte[] iv = new byte[16];
         int operationMode = Cipher.ENCRYPT_MODE;
@@ -52,14 +54,16 @@ class AESTest {
         AES aes = null;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> new AES(mode, key, iv, operationMode), "The class didn't throw an IllegalArgumentException indicating that it recognized a mode is null.");
+        String errorMessage = "The class didn't throw an IllegalArgumentException indicating that it recognized a mode is null.";
+        assertThrows(IllegalArgumentException.class, () -> new AES(null, key, iv, operationMode), errorMessage);
+        assertThrows(IllegalArgumentException.class, () -> new AES(mode, null, iv, operationMode), errorMessage);
     }
 
     @Test
-    void testInitialization_NullKey_ShouldThrowException() {
+    void testInitialization_InvalidMode_ShouldThrowException() {
         //given
-        String mode = "CBC";
-        String key = null;
+        String mode = "Lorem ipsum";
+        String key = "123";
         byte[] iv = new byte[16];
         int operationMode = Cipher.ENCRYPT_MODE;
 
@@ -67,7 +71,42 @@ class AESTest {
         AES aes = null;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> new AES(mode, key, iv, operationMode), "The class didn't throw an IllegalArgumentException indicating that it recognized a key is null.");
+        String errorMessage = "The class didn't throw an IllegalArgumentException indicating that it recognized a mode is null.";
+        assertThrows(AlgorithmException.class, () -> new AES(null, key, iv, operationMode), errorMessage);
+    }
+
+    @Test
+    void testInitialization_CBCNullIV_ShouldThrowException() {
+        //given
+        List<String> modes = new ArrayList<>(Arrays.asList("CBC", "CFB"));
+        String key = "123";
+        byte[] iv = null;
+        int operationMode = Cipher.DECRYPT_MODE;
+
+        //when
+        AES aes = null;
+
+        //then
+        for (String mode : modes) {
+            assertThrows(AlgorithmException.class, () -> new AES(mode, key, iv, operationMode), "The class didn't throw an AlgorithmException indicating that it recognized an IV vector is null.");
+        }
+    }
+
+    @Test
+    void testInitialization_CBCIncorrectIVLength_ShouldThrowException() {
+        //given
+        List<String> modes = new ArrayList<>(Arrays.asList("CBC", "CFB"));
+        String key = "123";
+        byte[] iv = new byte[15];
+        int operationMode = Cipher.DECRYPT_MODE;
+
+        //when
+        AES aes = null;
+
+        //then
+        for (String mode : modes) {
+            assertThrows(AlgorithmException.class, () -> new AES(mode, key, iv, operationMode), "The class didn't throw an ArgumentException indicating that it recognized the length of IV vector is inappropriate.");
+        }
     }
 
     @Test
@@ -169,18 +208,6 @@ class AESTest {
         byte[] finalEncryptedData = encryptedData;
 
         //then
-        assertThrows(AlgorithmException.class, () -> {
-            finalAes.decrypt(finalEncryptedData);
-        });
-    }
-
-    @Test
-    void testDecrypt_ValidData_ShouldReturnDecryptedData() throws AlgorithmException {
-
-    }
-
-    @Test
-    void testEncryptDecrypt_ValidData_ShouldDecryptSelfEncryptedData() {
-
+        assertThrows(AlgorithmException.class, () -> finalAes.decrypt(finalEncryptedData));
     }
 }
