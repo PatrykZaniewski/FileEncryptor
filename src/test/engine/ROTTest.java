@@ -75,8 +75,8 @@ class ROTTest {
     }
 
     @Test
-    void fiveAsShiftTest() {
-        assertThrows(AlgorithmException.class, () -> new ROT(5, Cipher.DECRYPT_MODE));
+    void zeroAsShiftTest() {
+        assertThrows(AlgorithmException.class, () -> new ROT(0, Cipher.DECRYPT_MODE));
     }
 
     @Test

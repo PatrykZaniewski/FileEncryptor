@@ -63,7 +63,7 @@ public class ROT implements Decryptor, Encryptor {
 
         return dataCopy;
     }
-    
+
     @Override
     public String getAlgorithmName() {
         return algorithmName;
