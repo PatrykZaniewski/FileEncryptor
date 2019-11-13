@@ -25,7 +25,7 @@ public class ROT implements Decryptor, Encryptor {
     }
 
     @Override
-    public byte[] decrypt(byte[] data) throws AlgorithmException {
+    public byte[] decrypt(byte[] data) {
         if (operationMode == Cipher.ENCRYPT_MODE) {
             throw new IllegalStateException("Cannot use Cipher in encryption mode to decrypt data.");
         }
@@ -33,12 +33,13 @@ public class ROT implements Decryptor, Encryptor {
             return null;
         }
 
+        byte[] decData = data.clone();
         byte shiftByte = (byte) (shift & 0xFF);
-        for (int i = 0; i < data.length; i++) {
-            data[i] = (byte) (data[i] - shiftByte);
+        for (int i = 0; i < decData.length; i++) {
+            decData[i] = (byte) (data[i] - shiftByte);
         }
 
-        return data;
+        return decData;
     }
 
     @Override
@@ -50,12 +51,13 @@ public class ROT implements Decryptor, Encryptor {
             return null;
         }
 
+        byte[] encData = data.clone();
         byte shiftByte = (byte) (shift & 0xFF);
-        for (int i = 0; i < data.length; i++) {
-            data[i] = (byte) (data[i] + shiftByte);
+        for (int i = 0; i < encData.length; i++) {
+            encData[i] = (byte) (data[i] + shiftByte);
         }
 
-        return data;
+        return encData;
     }
 
 
