@@ -429,4 +429,20 @@ public class MainWindowController {
             return false;
         }
     }
+
+    public TextField getFilePathTextFieldEnc() {
+        return filePathTextFieldEnc;
+    }
+
+    public TextField getDirectoryTextFieldEnc() {
+        return directoryTextFieldEnc;
+    }
+
+    public ComboBox<String> getAlgoComboBox() {
+        return algoComboBox;
+    }
+
+    public TextField getKeyInput() {
+        return keyInput;
+    }
 }
