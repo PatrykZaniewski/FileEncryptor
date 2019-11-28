@@ -42,10 +42,14 @@ public class ROTBenchmarks {
             String dir = "\\src\\test\\benchmarks\\";
             String resourcePath = "\\src\\main\\GUI\\mainWindow.fxml";
             System.out.println(pwd + resourcePath);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(pwd + resourcePath));
-            fxmlLoader.load();
+          //  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(pwd + resourcePath));
+         //   fxmlLoader.load();
             controller = new MainWindowController();
-            controller.getKeyInput().setText("42");
+            //TODO zamiast get ustawiać nowe kontrolki z odpowiednia wartością 
+            KeyInput keyInput = new KeyInput();
+            KeyInput.setText(pwd+dir);
+            // i tak dalej + TODO dodaj gety! 
+            controller.getKeyInput(keyInout)
             controller.getAlgoComboBox().getSelectionModel().select(12);
             controller.getDirectoryTextFieldEnc().setText(pwd + dir);
             controller.getFilePathTextFieldEnc().setText(pwd + dir + "test_file.docx");
