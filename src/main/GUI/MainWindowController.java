@@ -430,19 +430,23 @@ public class MainWindowController {
         }
     }
 
-    public TextField getFilePathTextFieldEnc() {
-        return filePathTextFieldEnc;
+    public void setFilePathTextFieldEnc(TextField filePathTextFieldEnc) {
+        this.filePathTextFieldEnc = filePathTextFieldEnc;
     }
 
-    public TextField getDirectoryTextFieldEnc() {
-        return directoryTextFieldEnc;
+    public void setDirectoryTextFieldEnc(TextField directoryTextFieldEnc) {
+        this.directoryTextFieldEnc = directoryTextFieldEnc;
+    }
+
+    public void setAlgoComboBox(ComboBox<String> algoComboBox) {
+        this.algoComboBox = algoComboBox;
     }
 
     public ComboBox<String> getAlgoComboBox() {
         return algoComboBox;
     }
 
-    public TextField getKeyInput() {
-        return keyInput;
+    public void setKeyInput(TextField keyInput) {
+        this.keyInput = keyInput;
     }
 }
