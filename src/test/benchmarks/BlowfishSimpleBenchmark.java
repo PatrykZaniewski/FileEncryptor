@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Fork(value = 1)
 @Warmup(iterations = 1)
 public class BlowfishSimpleBenchmark {
+
     @State(Scope.Thread)
     public static class SimpleState {
         byte[] data_toEnc;
