@@ -16,7 +16,7 @@ import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
-@Warmup(iterations = 1)
+@Warmup(iterations = 2)
 @Measurement(iterations = 5)
 @Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class DESSimpleBenchmark {

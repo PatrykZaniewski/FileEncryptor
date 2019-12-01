@@ -1,0 +1,763 @@
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.AESSimpleBenchmark.AESCBCDecryptBenchmark
+
+# Run progress: 0,00% complete, ETA 00:30:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 15491,499 us/op
+# Warmup Iteration   2: 14208,836 us/op
+Iteration   1: 14436,167 us/op
+Iteration   2: 14597,231 us/op
+Iteration   3: 14643,480 us/op
+Iteration   4: 14618,151 us/op
+Iteration   5: 14502,660 us/op
+
+
+Result "benchmarks.AESSimpleBenchmark.AESCBCDecryptBenchmark":
+  14559,538 ±(99.9%) 335,459 us/op [Average]
+  (min, avg, max) = (14436,167, 14559,538, 14643,480), stdev = 87,118
+  CI (99.9%): [14224,079, 14894,997] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.AESSimpleBenchmark.AESCBCEncryptBenchmark
+
+# Run progress: 3,85% complete, ETA 00:29:40
+# Fork: 1 of 1
+# Warmup Iteration   1: 19444,040 us/op
+# Warmup Iteration   2: 17555,621 us/op
+Iteration   1: 17622,391 us/op
+Iteration   2: 17644,880 us/op
+Iteration   3: 17778,214 us/op
+Iteration   4: 17766,980 us/op
+Iteration   5: 17902,219 us/op
+
+
+Result "benchmarks.AESSimpleBenchmark.AESCBCEncryptBenchmark":
+  17742,937 ±(99.9%) 436,245 us/op [Average]
+  (min, avg, max) = (17622,391, 17742,937, 17902,219), stdev = 113,292
+  CI (99.9%): [17306,691, 18179,182] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.AESSimpleBenchmark.AESCFBDecryptBenchmark
+
+# Run progress: 7,69% complete, ETA 00:28:29
+# Fork: 1 of 1
+# Warmup Iteration   1: 21396,015 us/op
+# Warmup Iteration   2: 19740,180 us/op
+Iteration   1: 19989,941 us/op
+Iteration   2: 19992,030 us/op
+Iteration   3: 20242,052 us/op
+Iteration   4: 20482,423 us/op
+Iteration   5: 20532,502 us/op
+
+
+Result "benchmarks.AESSimpleBenchmark.AESCFBDecryptBenchmark":
+  20247,790 ±(99.9%) 996,800 us/op [Average]
+  (min, avg, max) = (19989,941, 20247,790, 20532,502), stdev = 258,866
+  CI (99.9%): [19250,990, 21244,590] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.AESSimpleBenchmark.AESCFBEncryptBenchmark
+
+# Run progress: 11,54% complete, ETA 00:27:18
+# Fork: 1 of 1
+# Warmup Iteration   1: 21517,202 us/op
+# Warmup Iteration   2: 19224,546 us/op
+Iteration   1: 19458,015 us/op
+Iteration   2: 19454,523 us/op
+Iteration   3: 19583,801 us/op
+Iteration   4: 19620,756 us/op
+Iteration   5: 19699,695 us/op
+
+
+Result "benchmarks.AESSimpleBenchmark.AESCFBEncryptBenchmark":
+  19563,358 ±(99.9%) 409,521 us/op [Average]
+  (min, avg, max) = (19454,523, 19563,358, 19699,695), stdev = 106,351
+  CI (99.9%): [19153,837, 19972,879] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.AESSimpleBenchmark.AESECBDecryptBenchmark
+
+# Run progress: 15,38% complete, ETA 00:26:06
+# Fork: 1 of 1
+# Warmup Iteration   1: 6158,422 us/op
+# Warmup Iteration   2: 6020,015 us/op
+Iteration   1: 5970,760 us/op
+Iteration   2: 4954,873 us/op
+Iteration   3: 4614,460 us/op
+Iteration   4: 4662,707 us/op
+Iteration   5: 4622,304 us/op
+
+
+Result "benchmarks.AESSimpleBenchmark.AESECBDecryptBenchmark":
+  4965,021 ±(99.9%) 2231,509 us/op [Average]
+  (min, avg, max) = (4614,460, 4965,021, 5970,760), stdev = 579,516
+  CI (99.9%): [2733,512, 7196,530] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.AESSimpleBenchmark.AESECBEncryptBenchmark
+
+# Run progress: 19,23% complete, ETA 00:24:55
+# Fork: 1 of 1
+# Warmup Iteration   1: 6488,156 us/op
+# Warmup Iteration   2: 6244,178 us/op
+Iteration   1: 6288,456 us/op
+Iteration   2: 5689,971 us/op
+Iteration   3: 5139,870 us/op
+Iteration   4: 5150,233 us/op
+Iteration   5: 5230,118 us/op
+
+
+Result "benchmarks.AESSimpleBenchmark.AESECBEncryptBenchmark":
+  5499,730 ±(99.9%) 1908,516 us/op [Average]
+  (min, avg, max) = (5139,870, 5499,730, 6288,456), stdev = 495,636
+  CI (99.9%): [3591,213, 7408,246] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.BlowfishSimpleBenchmark.BlowfishCBCDecryptBenchmark
+
+# Run progress: 23,08% complete, ETA 00:23:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 83789,552 us/op
+# Warmup Iteration   2: 79768,347 us/op
+Iteration   1: 78497,438 us/op
+Iteration   2: 78700,645 us/op
+Iteration   3: 78640,753 us/op
+Iteration   4: 78652,352 us/op
+Iteration   5: 79458,674 us/op
+
+
+Result "benchmarks.BlowfishSimpleBenchmark.BlowfishCBCDecryptBenchmark":
+  78789,972 ±(99.9%) 1468,711 us/op [Average]
+  (min, avg, max) = (78497,438, 78789,972, 79458,674), stdev = 381,420
+  CI (99.9%): [77321,261, 80258,683] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.BlowfishSimpleBenchmark.BlowfishCBCEncryptBenchmark
+
+# Run progress: 26,92% complete, ETA 00:22:34
+# Fork: 1 of 1
+# Warmup Iteration   1: 83260,405 us/op
+# Warmup Iteration   2: 77156,789 us/op
+Iteration   1: 76456,951 us/op
+Iteration   2: 76180,289 us/op
+Iteration   3: 76369,369 us/op
+Iteration   4: 76346,316 us/op
+Iteration   5: 76403,740 us/op
+
+
+Result "benchmarks.BlowfishSimpleBenchmark.BlowfishCBCEncryptBenchmark":
+  76351,333 ±(99.9%) 401,596 us/op [Average]
+  (min, avg, max) = (76180,289, 76351,333, 76456,951), stdev = 104,293
+  CI (99.9%): [75949,737, 76752,930] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.BlowfishSimpleBenchmark.BlowfishCFBDecryptBenchmark
+
+# Run progress: 30,77% complete, ETA 00:21:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 82910,263 us/op
+# Warmup Iteration   2: 78903,766 us/op
+Iteration   1: 78086,843 us/op
+Iteration   2: 78322,209 us/op
+Iteration   3: 78154,371 us/op
+Iteration   4: 77958,538 us/op
+Iteration   5: 78294,038 us/op
+
+
+Result "benchmarks.BlowfishSimpleBenchmark.BlowfishCFBDecryptBenchmark":
+  78163,200 ±(99.9%) 578,229 us/op [Average]
+  (min, avg, max) = (77958,538, 78163,200, 78322,209), stdev = 150,164
+  CI (99.9%): [77584,971, 78741,429] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.BlowfishSimpleBenchmark.BlowfishCFBEncryptBenchmark
+
+# Run progress: 34,62% complete, ETA 00:20:12
+# Fork: 1 of 1
+# Warmup Iteration   1: 84281,715 us/op
+# Warmup Iteration   2: 78460,182 us/op
+Iteration   1: 77668,640 us/op
+Iteration   2: 77147,643 us/op
+Iteration   3: 77418,232 us/op
+Iteration   4: 77223,022 us/op
+Iteration   5: 77438,679 us/op
+
+
+Result "benchmarks.BlowfishSimpleBenchmark.BlowfishCFBEncryptBenchmark":
+  77379,243 ±(99.9%) 786,435 us/op [Average]
+  (min, avg, max) = (77147,643, 77379,243, 77668,640), stdev = 204,235
+  CI (99.9%): [76592,809, 78165,678] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.BlowfishSimpleBenchmark.BlowfishECBDecryptBenchmark
+
+# Run progress: 38,46% complete, ETA 00:19:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 71630,819 us/op
+# Warmup Iteration   2: 67344,401 us/op
+Iteration   1: 66997,707 us/op
+Iteration   2: 66753,156 us/op
+Iteration   3: 66797,417 us/op
+Iteration   4: 67371,568 us/op
+Iteration   5: 67425,340 us/op
+
+
+Result "benchmarks.BlowfishSimpleBenchmark.BlowfishECBDecryptBenchmark":
+  67069,038 ±(99.9%) 1213,293 us/op [Average]
+  (min, avg, max) = (66753,156, 67069,038, 67425,340), stdev = 315,088
+  CI (99.9%): [65855,745, 68282,330] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.BlowfishSimpleBenchmark.BlowfishECBEncryptBenchmark
+
+# Run progress: 42,31% complete, ETA 00:17:49
+# Fork: 1 of 1
+# Warmup Iteration   1: 69129,121 us/op
+# Warmup Iteration   2: 65600,016 us/op
+Iteration   1: 65186,063 us/op
+Iteration   2: 64745,242 us/op
+Iteration   3: 64759,949 us/op
+Iteration   4: 65084,110 us/op
+Iteration   5: 65153,818 us/op
+
+
+Result "benchmarks.BlowfishSimpleBenchmark.BlowfishECBEncryptBenchmark":
+  64985,836 ±(99.9%) 832,303 us/op [Average]
+  (min, avg, max) = (64745,242, 64985,836, 65186,063), stdev = 216,146
+  CI (99.9%): [64153,534, 65818,139] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.DESSimpleBenchmark.DESCBCDecryptBenchmark
+
+# Run progress: 46,15% complete, ETA 00:16:38
+# Fork: 1 of 1
+# Warmup Iteration   1: 146475,125 us/op
+# Warmup Iteration   2: 140423,442 us/op
+Iteration   1: 140171,672 us/op
+Iteration   2: 139657,051 us/op
+Iteration   3: 139594,865 us/op
+Iteration   4: 139556,785 us/op
+Iteration   5: 139781,844 us/op
+
+
+Result "benchmarks.DESSimpleBenchmark.DESCBCDecryptBenchmark":
+  139752,444 ±(99.9%) 960,406 us/op [Average]
+  (min, avg, max) = (139556,785, 139752,444, 140171,672), stdev = 249,414
+  CI (99.9%): [138792,038, 140712,849] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.DESSimpleBenchmark.DESCBCEncryptBenchmark
+
+# Run progress: 50,00% complete, ETA 00:15:27
+# Fork: 1 of 1
+# Warmup Iteration   1: 140578,749 us/op
+# Warmup Iteration   2: 130840,249 us/op
+Iteration   1: 130705,012 us/op
+Iteration   2: 129968,744 us/op
+Iteration   3: 130503,851 us/op
+Iteration   4: 130631,832 us/op
+Iteration   5: 130621,052 us/op
+
+
+Result "benchmarks.DESSimpleBenchmark.DESCBCEncryptBenchmark":
+  130486,098 ±(99.9%) 1147,699 us/op [Average]
+  (min, avg, max) = (129968,744, 130486,098, 130705,012), stdev = 298,054
+  CI (99.9%): [129338,399, 131633,798] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.DESSimpleBenchmark.DESCFBDecryptBenchmark
+
+# Run progress: 53,85% complete, ETA 00:14:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 141697,393 us/op
+# Warmup Iteration   2: 137188,448 us/op
+Iteration   1: 135516,145 us/op
+Iteration   2: 134712,079 us/op
+Iteration   3: 136088,293 us/op
+Iteration   4: 134842,067 us/op
+Iteration   5: 134987,549 us/op
+
+
+Result "benchmarks.DESSimpleBenchmark.DESCFBDecryptBenchmark":
+  135229,227 ±(99.9%) 2191,876 us/op [Average]
+  (min, avg, max) = (134712,079, 135229,227, 136088,293), stdev = 569,223
+  CI (99.9%): [133037,351, 137421,102] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.DESSimpleBenchmark.DESCFBEncryptBenchmark
+
+# Run progress: 57,69% complete, ETA 00:13:05
+# Fork: 1 of 1
+# Warmup Iteration   1: 146494,387 us/op
+# Warmup Iteration   2: 136926,746 us/op
+Iteration   1: 136846,014 us/op
+Iteration   2: 136078,535 us/op
+Iteration   3: 137068,936 us/op
+Iteration   4: 136033,730 us/op
+Iteration   5: 136422,068 us/op
+
+
+Result "benchmarks.DESSimpleBenchmark.DESCFBEncryptBenchmark":
+  136489,856 ±(99.9%) 1768,796 us/op [Average]
+  (min, avg, max) = (136033,730, 136489,856, 137068,936), stdev = 459,351
+  CI (99.9%): [134721,060, 138258,653] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.DESSimpleBenchmark.DESECBDecryptBenchmark
+
+# Run progress: 61,54% complete, ETA 00:11:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 132279,746 us/op
+# Warmup Iteration   2: 126451,275 us/op
+Iteration   1: 126197,146 us/op
+Iteration   2: 125331,993 us/op
+Iteration   3: 126303,465 us/op
+Iteration   4: 125429,169 us/op
+Iteration   5: 125460,774 us/op
+
+
+Result "benchmarks.DESSimpleBenchmark.DESECBDecryptBenchmark":
+  125744,509 ±(99.9%) 1793,164 us/op [Average]
+  (min, avg, max) = (125331,993, 125744,509, 126303,465), stdev = 465,679
+  CI (99.9%): [123951,346, 127537,673] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.DESSimpleBenchmark.DESECBEncryptBenchmark
+
+# Run progress: 65,38% complete, ETA 00:10:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 126674,301 us/op
+# Warmup Iteration   2: 121364,307 us/op
+Iteration   1: 120972,914 us/op
+Iteration   2: 120839,400 us/op
+Iteration   3: 120044,317 us/op
+Iteration   4: 120075,750 us/op
+Iteration   5: 120303,787 us/op
+
+
+Result "benchmarks.DESSimpleBenchmark.DESECBEncryptBenchmark":
+  120447,234 ±(99.9%) 1668,549 us/op [Average]
+  (min, avg, max) = (120044,317, 120447,234, 120972,914), stdev = 433,317
+  CI (99.9%): [118778,685, 122115,782] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.RC2SimpleBenchmark.RC2CBCDecryptBenchmark
+
+# Run progress: 69,23% complete, ETA 00:09:31
+# Fork: 1 of 1
+# Warmup Iteration   1: 112997,573 us/op
+# Warmup Iteration   2: 108609,525 us/op
+Iteration   1: 107585,915 us/op
+Iteration   2: 106986,084 us/op
+Iteration   3: 107125,753 us/op
+Iteration   4: 107191,395 us/op
+Iteration   5: 106975,830 us/op
+
+
+Result "benchmarks.RC2SimpleBenchmark.RC2CBCDecryptBenchmark":
+  107172,995 ±(99.9%) 956,641 us/op [Average]
+  (min, avg, max) = (106975,830, 107172,995, 107585,915), stdev = 248,437
+  CI (99.9%): [106216,354, 108129,637] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.RC2SimpleBenchmark.RC2CBCEncryptBenchmark
+
+# Run progress: 73,08% complete, ETA 00:08:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 159410,873 us/op
+# Warmup Iteration   2: 148489,062 us/op
+Iteration   1: 148130,884 us/op
+Iteration   2: 147728,429 us/op
+Iteration   3: 147537,206 us/op
+Iteration   4: 147769,479 us/op
+Iteration   5: 147416,868 us/op
+
+
+Result "benchmarks.RC2SimpleBenchmark.RC2CBCEncryptBenchmark":
+  147716,573 ±(99.9%) 1048,530 us/op [Average]
+  (min, avg, max) = (147416,868, 147716,573, 148130,884), stdev = 272,300
+  CI (99.9%): [146668,043, 148765,103] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.RC2SimpleBenchmark.RC2CFBDecryptBenchmark
+
+# Run progress: 76,92% complete, ETA 00:07:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 157400,655 us/op
+# Warmup Iteration   2: 151459,642 us/op
+Iteration   1: 150040,533 us/op
+Iteration   2: 149596,342 us/op
+Iteration   3: 149140,818 us/op
+Iteration   4: 149179,244 us/op
+Iteration   5: 149008,746 us/op
+
+
+Result "benchmarks.RC2SimpleBenchmark.RC2CFBDecryptBenchmark":
+  149393,136 ±(99.9%) 1630,948 us/op [Average]
+  (min, avg, max) = (149008,746, 149393,136, 150040,533), stdev = 423,552
+  CI (99.9%): [147762,188, 151024,085] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.RC2SimpleBenchmark.RC2CFBEncryptBenchmark
+
+# Run progress: 80,77% complete, ETA 00:05:57
+# Fork: 1 of 1
+# Warmup Iteration   1: 160807,486 us/op
+# Warmup Iteration   2: 150265,670 us/op
+Iteration   1: 149958,851 us/op
+Iteration   2: 149683,437 us/op
+Iteration   3: 149118,100 us/op
+Iteration   4: 149343,833 us/op
+Iteration   5: 149182,281 us/op
+
+
+Result "benchmarks.RC2SimpleBenchmark.RC2CFBEncryptBenchmark":
+  149457,300 ±(99.9%) 1369,902 us/op [Average]
+  (min, avg, max) = (149118,100, 149457,300, 149958,851), stdev = 355,759
+  CI (99.9%): [148087,399, 150827,202] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.RC2SimpleBenchmark.RC2ECBDecryptBenchmark
+
+# Run progress: 84,62% complete, ETA 00:04:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 103922,435 us/op
+# Warmup Iteration   2: 98824,628 us/op
+Iteration   1: 98550,805 us/op
+Iteration   2: 98307,118 us/op
+Iteration   3: 98193,119 us/op
+Iteration   4: 98159,636 us/op
+Iteration   5: 98237,108 us/op
+
+
+Result "benchmarks.RC2SimpleBenchmark.RC2ECBDecryptBenchmark":
+  98289,557 ±(99.9%) 601,149 us/op [Average]
+  (min, avg, max) = (98159,636, 98289,557, 98550,805), stdev = 156,117
+  CI (99.9%): [97688,408, 98890,706] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.RC2SimpleBenchmark.RC2ECBEncryptBenchmark
+
+# Run progress: 88,46% complete, ETA 00:03:34
+# Fork: 1 of 1
+# Warmup Iteration   1: 143632,049 us/op
+# Warmup Iteration   2: 138642,048 us/op
+Iteration   1: 137695,984 us/op
+Iteration   2: 137446,214 us/op
+Iteration   3: 137333,336 us/op
+Iteration   4: 136908,499 us/op
+Iteration   5: 137444,819 us/op
+
+
+Result "benchmarks.RC2SimpleBenchmark.RC2ECBEncryptBenchmark":
+  137365,770 ±(99.9%) 1109,209 us/op [Average]
+  (min, avg, max) = (136908,499, 137365,770, 137695,984), stdev = 288,058
+  CI (99.9%): [136256,561, 138474,980] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.ROTSimpleBenchmark.ROTDecryptBenchmark
+
+# Run progress: 92,31% complete, ETA 00:02:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 1784,294 us/op
+# Warmup Iteration   2: 1668,908 us/op
+Iteration   1: 1672,682 us/op
+Iteration   2: 1663,829 us/op
+Iteration   3: 1679,695 us/op
+Iteration   4: 1731,256 us/op
+Iteration   5: 1715,168 us/op
+
+
+Result "benchmarks.ROTSimpleBenchmark.ROTDecryptBenchmark":
+  1692,526 ±(99.9%) 112,175 us/op [Average]
+  (min, avg, max) = (1663,829, 1692,526, 1731,256), stdev = 29,131
+  CI (99.9%): [1580,351, 1804,701] (assumes normal distribution)
+
+
+# JMH version: 1.22
+# VM version: JDK 1.8.0_221, Java HotSpot(TM) 64-Bit Server VM, 25.221-b11
+# VM invoker: C:\Program Files\Java\jdk1.8.0_221\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\lib\idea_rt.jar=52215:C:\Users\Maciej\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\192.7142.36\bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 1 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.ROTSimpleBenchmark.ROTEncryptBenchmark
+
+# Run progress: 96,15% complete, ETA 00:01:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 1712,578 us/op
+# Warmup Iteration   2: 1655,484 us/op
+Iteration   1: 1659,621 us/op
+Iteration   2: 1661,303 us/op
+Iteration   3: 1693,747 us/op
+Iteration   4: 1679,988 us/op
+Iteration   5: 1699,748 us/op
+
+
+Result "benchmarks.ROTSimpleBenchmark.ROTEncryptBenchmark":
+  1678,881 ±(99.9%) 70,415 us/op [Average]
+  (min, avg, max) = (1659,621, 1678,881, 1699,748), stdev = 18,287
+  CI (99.9%): [1608,466, 1749,297] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:30:57
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                            Mode  Cnt       Score      Error  Units
+AESSimpleBenchmark.AESCBCDecryptBenchmark            avgt    5   14559,538 ±  335,459  us/op
+AESSimpleBenchmark.AESCBCEncryptBenchmark            avgt    5   17742,937 ±  436,245  us/op
+AESSimpleBenchmark.AESCFBDecryptBenchmark            avgt    5   20247,790 ±  996,800  us/op
+AESSimpleBenchmark.AESCFBEncryptBenchmark            avgt    5   19563,358 ±  409,521  us/op
+AESSimpleBenchmark.AESECBDecryptBenchmark            avgt    5    4965,021 ± 2231,509  us/op
+AESSimpleBenchmark.AESECBEncryptBenchmark            avgt    5    5499,730 ± 1908,516  us/op
+BlowfishSimpleBenchmark.BlowfishCBCDecryptBenchmark  avgt    5   78789,972 ± 1468,711  us/op
+BlowfishSimpleBenchmark.BlowfishCBCEncryptBenchmark  avgt    5   76351,333 ±  401,596  us/op
+BlowfishSimpleBenchmark.BlowfishCFBDecryptBenchmark  avgt    5   78163,200 ±  578,229  us/op
+BlowfishSimpleBenchmark.BlowfishCFBEncryptBenchmark  avgt    5   77379,243 ±  786,435  us/op
+BlowfishSimpleBenchmark.BlowfishECBDecryptBenchmark  avgt    5   67069,038 ± 1213,293  us/op
+BlowfishSimpleBenchmark.BlowfishECBEncryptBenchmark  avgt    5   64985,836 ±  832,303  us/op
+DESSimpleBenchmark.DESCBCDecryptBenchmark            avgt    5  139752,444 ±  960,406  us/op
+DESSimpleBenchmark.DESCBCEncryptBenchmark            avgt    5  130486,098 ± 1147,699  us/op
+DESSimpleBenchmark.DESCFBDecryptBenchmark            avgt    5  135229,227 ± 2191,876  us/op
+DESSimpleBenchmark.DESCFBEncryptBenchmark            avgt    5  136489,856 ± 1768,796  us/op
+DESSimpleBenchmark.DESECBDecryptBenchmark            avgt    5  125744,509 ± 1793,164  us/op
+DESSimpleBenchmark.DESECBEncryptBenchmark            avgt    5  120447,234 ± 1668,549  us/op
+RC2SimpleBenchmark.RC2CBCDecryptBenchmark            avgt    5  107172,995 ±  956,641  us/op
+RC2SimpleBenchmark.RC2CBCEncryptBenchmark            avgt    5  147716,573 ± 1048,530  us/op
+RC2SimpleBenchmark.RC2CFBDecryptBenchmark            avgt    5  149393,136 ± 1630,948  us/op
+RC2SimpleBenchmark.RC2CFBEncryptBenchmark            avgt    5  149457,300 ± 1369,902  us/op
+RC2SimpleBenchmark.RC2ECBDecryptBenchmark            avgt    5   98289,557 ±  601,149  us/op
+RC2SimpleBenchmark.RC2ECBEncryptBenchmark            avgt    5  137365,770 ± 1109,209  us/op
+ROTSimpleBenchmark.ROTDecryptBenchmark               avgt    5    1692,526 ±  112,175  us/op
+ROTSimpleBenchmark.ROTEncryptBenchmark               avgt    5    1678,881 ±   70,415  us/op

@@ -16,7 +16,7 @@ import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
-@Warmup(iterations = 1)
+@Warmup(iterations = 2)
 @Measurement(iterations = 5)
 @Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class BlowfishSimpleBenchmark {
@@ -28,7 +28,7 @@ public class BlowfishSimpleBenchmark {
         byte[] data_toDecCBC;
         byte[] iv_CBC = Base64.getDecoder().decode("8TIKtUcA9Oc=");
         byte[] data_toDecCFB;
-        byte[] iv_CFB = Base64.getDecoder().decode("d\\/by0oKpFTU=");
+        byte[] iv_CFB = Base64.getDecoder().decode("rXLtmRrKw3s=");
 
         @Setup
         public void init() throws IOException, ParseException {
@@ -44,7 +44,7 @@ public class BlowfishSimpleBenchmark {
             jsonObject = (JSONObject) new JSONParser().parse(file);
             data_toDecCBC = Base64.getDecoder().decode((String) jsonObject.get("Encrypted"));
 
-            file = new FileReader(pwd + dir + "encrypted_Blowfish_01.12.2019-212440.json");
+            file = new FileReader(pwd + dir + "encrypted_Blowfish_01.12.2019-224018.json");
             jsonObject = (JSONObject) new JSONParser().parse(file);
             data_toDecCFB = Base64.getDecoder().decode((String) jsonObject.get("Encrypted"));
         }
