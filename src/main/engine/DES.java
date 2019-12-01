@@ -62,6 +62,7 @@ public class DES implements Encryptor, Decryptor {
                         }
 
                         this.cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+                        System.out.println(ivParameterSpec);
                     } else {
                         this.cipher = Cipher.getInstance(algorithmName + "/" + mode + "/PKCS5Padding");
                         this.cipher.init(Cipher.ENCRYPT_MODE, secretKey);

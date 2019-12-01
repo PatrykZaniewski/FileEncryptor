@@ -29,7 +29,7 @@ public class BlowfishSimpleBenchmark {
         public void init() throws IOException, ParseException {
             String pwd = System.getProperty("user.dir");
             String dir = "/src/test/benchmarks/";
-            data_toEnc = Files.readAllBytes(Paths.get(pwd + dir + "test_file.docx"));
+            data_toEnc = Files.readAllBytes(Paths.get(pwd + dir + "test_image.jpg"));
 
             FileReader file = new FileReader(pwd + dir + "encrypted_Blowfish_01.12.2019-212434.json");
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(file);
