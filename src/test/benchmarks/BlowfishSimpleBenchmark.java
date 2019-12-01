@@ -31,15 +31,15 @@ public class BlowfishSimpleBenchmark {
             String dir = "/src/test/benchmarks/";
             data_toEnc = Files.readAllBytes(Paths.get(pwd + dir + "test_file.docx"));
 
-            FileReader file = new FileReader(pwd + dir + "encrypted_Blowfish_30.11.2019-161140.json");
+            FileReader file = new FileReader(pwd + dir + "encrypted_Blowfish_01.12.2019-212434.json");
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(file);
             data_toDecECB = Base64.getDecoder().decode((String) jsonObject.get("Encrypted"));
 
-            file = new FileReader(pwd + dir + "encrypted_Blowfish_30.11.2019-153252.json");
+            file = new FileReader(pwd + dir + "encrypted_Blowfish_01.12.2019-212437.json");
             jsonObject = (JSONObject) new JSONParser().parse(file);
             data_toDecCBC = Base64.getDecoder().decode((String) jsonObject.get("Encrypted"));
 
-            file = new FileReader(pwd + dir + "encrypted_Blowfish_30.11.2019-153441.json");
+            file = new FileReader(pwd + dir + "encrypted_Blowfish_01.12.2019-212440.json");
             jsonObject = (JSONObject) new JSONParser().parse(file);
             data_toDecCFB = Base64.getDecoder().decode((String) jsonObject.get("Encrypted"));
         }

@@ -27,8 +27,8 @@ public class ROTSimpleBenchmark {
         public void init() throws IOException {
             String pwd = System.getProperty("user.dir");
             String dir = "/src/test/benchmarks/";
-            data_toEnc = Files.readAllBytes(Paths.get(pwd + dir + "test_file.docx"));
-            data_toDec = Files.readAllBytes(Paths.get(pwd + dir + "encrypted_ROT_30.11.2019-142454.json"));
+            data_toEnc = Files.readAllBytes(Paths.get(pwd + dir + "aes_test.jpg"));
+            data_toDec = Files.readAllBytes(Paths.get(pwd + dir + "encrypted_ROT_01.12.2019-212445.json"));
         }
     }
 
