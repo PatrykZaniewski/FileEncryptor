@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
+@Fork(value = 1)
+@Warmup(iterations = 1)
 public class DESSimpleBenchmark {
 
     public static void main(String[] args) throws Exception {
