@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
 @Warmup(iterations = 1)
+@Measurement(iterations = 5)
 @Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class RC2SimpleBenchmark {
 
@@ -54,7 +55,6 @@ public class RC2SimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void RC2ECBEncryptBenchmark(SimpleState state) {
@@ -67,7 +67,6 @@ public class RC2SimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void RC2ECBDecryptBenchmark(SimpleState state) {
@@ -80,7 +79,6 @@ public class RC2SimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void RC2CBCEncryptBenchmark(SimpleState state) {
@@ -93,7 +91,6 @@ public class RC2SimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void RC2CBCDecryptBenchmark(SimpleState state) {
@@ -106,7 +103,6 @@ public class RC2SimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void RC2CFBEncryptBenchmark(SimpleState state) {
@@ -119,7 +115,6 @@ public class RC2SimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void RC2CFBDecryptBenchmark(SimpleState state) {

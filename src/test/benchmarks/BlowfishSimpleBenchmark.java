@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
 @Warmup(iterations = 1)
+@Measurement(iterations = 5)
 @Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class BlowfishSimpleBenchmark {
 

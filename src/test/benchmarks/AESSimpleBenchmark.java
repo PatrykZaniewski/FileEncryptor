@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
 @Warmup(iterations = 1)
+@Measurement(iterations = 5)
 @Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class AESSimpleBenchmark {
 
@@ -54,7 +55,6 @@ public class AESSimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void AESECBEncryptBenchmark(SimpleState state) {
@@ -67,7 +67,6 @@ public class AESSimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void AESECBDecryptBenchmark(SimpleState state) {
@@ -80,7 +79,6 @@ public class AESSimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void AESCBCEncryptBenchmark(SimpleState state) {
@@ -93,7 +91,6 @@ public class AESSimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void AESCBCDecryptBenchmark(SimpleState state) {
@@ -106,7 +103,6 @@ public class AESSimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void AESCFBEncryptBenchmark(SimpleState state) {
@@ -119,7 +115,6 @@ public class AESSimpleBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void AESCFBDecryptBenchmark(SimpleState state) {

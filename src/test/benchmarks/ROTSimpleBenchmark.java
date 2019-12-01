@@ -10,8 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-@Fork(value = 1)
+@Fork(value = 2)
 @Warmup(iterations = 1)
+@Measurement(iterations = 5)
 @Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class ROTSimpleBenchmark {
 
