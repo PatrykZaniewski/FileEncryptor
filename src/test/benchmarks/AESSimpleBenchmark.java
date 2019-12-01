@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
 @Warmup(iterations = 1)
+@Timeout(time = 1, timeUnit = TimeUnit.MINUTES)
 public class AESSimpleBenchmark {
 
     public static void main(String[] args) throws Exception {
