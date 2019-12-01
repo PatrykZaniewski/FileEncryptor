@@ -21,9 +21,9 @@ public class BlowfishSimpleBenchmark {
         byte[] data_toEnc;
         byte[] data_toDecECB;
         byte[] data_toDecCBC;
-        byte[] iv_CBC = Base64.getDecoder().decode("xkjzNdR9KpA=");
+        byte[] iv_CBC = Base64.getDecoder().decode("8TIKtUcA9Oc=");
         byte[] data_toDecCFB;
-        byte[] iv_CFB = Base64.getDecoder().decode("S2nsfCJDLNQ=");
+        byte[] iv_CFB = Base64.getDecoder().decode("d\\/by0oKpFTU=");
 
         @Setup
         public void init() throws IOException, ParseException {
