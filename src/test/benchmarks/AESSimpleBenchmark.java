@@ -80,7 +80,7 @@ public class AESSimpleBenchmark {
     @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void AESfishCBCEncryptBenchmark(SimpleState state) {
+    public void AESCBCEncryptBenchmark(SimpleState state) {
         try {
             AES aes = new AES("CBC", "klucz", null, Cipher.ENCRYPT_MODE);
             aes.encrypt(state.data_toEnc);
@@ -93,7 +93,7 @@ public class AESSimpleBenchmark {
     @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void AESfishCBCDecryptBenchmark(SimpleState state) {
+    public void AESCBCDecryptBenchmark(SimpleState state) {
         try {
             AES aes = new AES("CBC", "klucz", state.iv_CBC, Cipher.DECRYPT_MODE);
             aes.decrypt(state.data_toDecCBC);
@@ -106,7 +106,7 @@ public class AESSimpleBenchmark {
     @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void AESfishCFBEncryptBenchmark(SimpleState state) {
+    public void AESCFBEncryptBenchmark(SimpleState state) {
         try {
             AES aes = new AES("CFB", "klucz", null, Cipher.ENCRYPT_MODE);
             aes.encrypt(state.data_toEnc);
@@ -119,7 +119,7 @@ public class AESSimpleBenchmark {
     @Measurement(iterations = 1)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void AESfishCFBDecryptBenchmark(SimpleState state) {
+    public void AESCFBDecryptBenchmark(SimpleState state) {
         try {
             AES aes = new AES("CFB", "klucz", state.iv_CFB, Cipher.DECRYPT_MODE);
             aes.decrypt(state.data_toDecCFB);
