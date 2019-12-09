@@ -1,0 +1,15 @@
+GIVEN a .png file
+WHEN I choose the hash algorithm
+THEN I get the checksum for the file
+
+GIVEN a .txt file
+WHEN I choose the sha1 hash algorithm
+THEN I get the proper hash (160 bits output)
+
+GIVEN a .jpg file
+WHEN I choose the sha256 hash algorithm
+THEN I get the proper hash (256 bits long)
+
+GIVEN a .png file
+WHEN i choose the md5 hash algorithm
+THEN I get the proper hash (128 bits long)
