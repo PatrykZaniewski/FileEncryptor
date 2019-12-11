@@ -1,5 +1,6 @@
 package GUI;
 
+import engine.CheckSum;
 import engine.Creator;
 import engine.Decryptor;
 import engine.Encryptor;
@@ -43,6 +44,10 @@ public class MainWindowController {
     private VBox stepTwoDecVBox;
     @FXML
     private VBox stepThreeDecVBox;
+    @FXML
+    private VBox stepTwoCheckSumVBox;
+    @FXML
+    private VBox checkSumVBox;
 
     @FXML
     private Button savePathButtonEnc;
@@ -51,15 +56,23 @@ public class MainWindowController {
     @FXML
     private Button startDecButton;
     @FXML
+    private Button startCheckSumButton;
+    @FXML
     private TextField filePathTextFieldEnc;
     @FXML
     private TextField filePathTextFieldDec;
+    @FXML
+    private TextField filePathCheckSum;
     @FXML
     private TextField directoryTextFieldEnc;
     @FXML
     private TextField directoryTextFieldDec;
     @FXML
+    private TextArea checkSumTextArea;
+    @FXML
     private ComboBox<String> algoComboBox;
+    @FXML
+    private ComboBox<String> algoComboBoxCheckSum;
     @FXML
     private TextField keyInput;
     @FXML
@@ -91,6 +104,12 @@ public class MainWindowController {
     public void openFileChooserEnc() {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT, JPG, PNG (*.txt, *.jpg, *jpeg, *.png)", "*.txt", "*.jpg", "*.jpeg", "*.png");
         openFileChooser(filePathTextFieldEnc, stepTwoEncVBox, extFilter);
+    }
+
+    @FXML
+    public void openFileChooserCheckSum() {
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pliki TXT, JPG, PNG (*.txt, *.jpg, *jpeg, *.png)", "*.txt", "*.jpg", "*.jpeg", "*.png");
+        openFileChooser(filePathCheckSum, stepTwoCheckSumVBox, extFilter);
     }
 
     @FXML
@@ -133,6 +152,11 @@ public class MainWindowController {
             keyLabel.setText("Klucz:");
             keyLabel.setPrefWidth(46);
         }
+    }
+
+    @FXML
+    public void setAlgorithmCheckSum() {
+        animateNode(startCheckSumButton);
     }
 
     @FXML
@@ -232,6 +256,7 @@ public class MainWindowController {
         }
     }
 
+    @FXML
     public boolean startDec() throws IOException, ParseException, AlgorithmException {
         String filePath = filePathTextFieldDec.getText();
         String savePath = directoryTextFieldDec.getText();
@@ -311,6 +336,21 @@ public class MainWindowController {
         showConfirmation("dec");
 
         return true;
+    }
+
+    @FXML
+    public void startCheckSum() {
+        String filePath = filePathCheckSum.getText();
+        String algorithm = algoComboBoxCheckSum.getValue();
+
+        CheckSum ch = new CheckSum(algorithm);
+        try {
+            byte[] msg = Files.readAllBytes(Paths.get(filePath));
+            checkSumTextArea.setText(ch.getHash(msg));
+            animateNode(checkSumVBox);
+        } catch (IOException e) {
+            showError(2);
+        }
     }
 
     private int checkFilePaths(String filePath, String savePath) {
