@@ -46,6 +46,24 @@ public class CheckCipherSteps {
         }
     }
 
+    @When("I choose the $algoType algorithm with $mode mode and $password password")
+    public void chooseAlgo(String algoType, String mode, String password) throws AlgorithmException {
+        switch (algoType) {
+            case "AES":
+                encryptor = new AES(mode, password, null, Cipher.ENCRYPT_MODE);
+                break;
+            case "DES":
+                encryptor = new DES(mode, password, null, Cipher.ENCRYPT_MODE);
+                break;
+            case "Blowfish":
+                encryptor = new Blowfish(mode, password, null, Cipher.ENCRYPT_MODE);
+                break;
+            case "RC2":
+                encryptor = new RC2(mode, password, null, Cipher.ENCRYPT_MODE);
+                break;
+        }
+    }
+
     @Then("I get the proper cipheredText ($ciphered)")
     public void getCipher(String ciphered) {
         byte[] ans = encryptor.encrypt(file);
