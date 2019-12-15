@@ -22,3 +22,18 @@ Scenario: Test DES CBC algorithm on .txt file3
 Given a /src/test/bdd/loremCipher.txt file
 When I choose the DES algorithm with CBC mode and abc password and cGR0Z9YIYg0= iv
 Then I get the proper cipheredText (LbfX6Zg7qkcodmlWi1s9YW0b2EqURalpMPPlGqg9d6E=)
+
+Scenario: Test RC2 ECB algorithm on .txt file
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the RC2 algorithm with ECB mode and abc password
+Then I get the proper cipheredText (FMn96Wx6LTGos0Yf2OmUwACgNdCr1r9r8j5xzoEAKi4=)
+
+Scenario: Test RC2 CBC algorithm on .txt file
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the RC2 algorithm with CBC mode and abc password and vTQ2awXO7qo= iv
+Then I get the proper cipheredText (WdKxcGhsjPKHWM3LckhW2Hq3BDlXCF9UAnhVQ5uqLdM=)
+
+Scenario: Test RC2 CFB algorithm on .txt file
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the RC2 algorithm with CFB mode and abc password and MyhZw5ZkKKY= iv
+Then I get the proper cipheredText (LRoV+o8KV45tuEO5M48cLNstyLJfOGQf40DNzfdG0Y0=)
