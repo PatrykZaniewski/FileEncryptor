@@ -19,6 +19,6 @@ public class IGetTheHash extends JUnitStory {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new CheckSumSteps(), new CheckCipherSteps());
+        return new InstanceStepsFactory(configuration(), new CheckSumSteps());
     }
 }

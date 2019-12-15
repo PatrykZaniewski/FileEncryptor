@@ -1,7 +1,7 @@
 Scenario: Test SHA-1 hash algorithm on .png file
 Given a /src/test/benchmarks/test_image.png file
 When I choose the SHA-1 hash algorithm
-THEN I get the proper hash (a68019e1a46500c96ed9e4042055d1cb186f0567)
+Then I get the proper hash (a68019e1a46500c96ed9e4042055d1cb186f0567)
 
 Scenario: Test SHA-256 hash algorithm on .png file
 Given a /src/test/benchmarks/test_image.png file
@@ -25,7 +25,7 @@ Then I get the proper hash (548ed0c455f1cdb4a70db8c5128fd41a48a875a0c065980083aa
 
 Scenario: Test MD5 hash algorithm on .txt file
 Given a /src/test/bdd/lorem.txt file
-When i choose the MD5 hash algorithm
+When I choose the MD5 hash algorithm
 Then I get the proper hash (05c9c0c04935f048943673d2611b72f2)
 
 Scenario: Test SHA-1 hash algorithm on .jpg file
@@ -40,7 +40,7 @@ Then I get the proper hash (d172cb5d72f64d34ce70f20cf4983c7cc98a061f8a9e215b3cdf
 
 Scenario: Test MD5 hash algorithm on .jpg file
 Given a /src/test/benchmarks/test_image.jpg file
-When i choose the MD5 hash algorithm
+When I choose the MD5 hash algorithm
 Then I get the proper hash (15dd4b14c4740b668d7f1c58516dc28d)
 
 
