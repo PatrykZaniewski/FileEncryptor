@@ -37,3 +37,8 @@ Scenario: Test RC2 CFB algorithm on .txt file
 Given a /src/test/bdd/loremCipher.txt file
 When I choose the RC2 algorithm with CFB mode and abc password and MyhZw5ZkKKY= iv
 Then I get the proper cipheredText (LRoV+o8KV45tuEO5M48cLNstyLJfOGQf40DNzfdG0Y0=)
+
+Scenario: Test ROT algorithm on .txt file
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the ROT algorithm with 101 shift
+Then I get the proper cipheredText (sdTXytKFztXY2tKFydTR1NeF2M7ZhcbSytmT)

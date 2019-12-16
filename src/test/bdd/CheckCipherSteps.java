@@ -46,6 +46,11 @@ public class CheckCipherSteps {
         }
     }
 
+    @When("I choose the ROT algorithm with $shift shift")
+    public void chooseRotAlgo(String shift) throws AlgorithmException {
+        encryptor = new ROT(Integer.parseInt(shift), Cipher.ENCRYPT_MODE);
+    }
+
     @When("I choose the $algoType algorithm with $mode mode and $password password")
     public void chooseAlgo(String algoType, String mode, String password) throws AlgorithmException {
         switch (algoType) {
