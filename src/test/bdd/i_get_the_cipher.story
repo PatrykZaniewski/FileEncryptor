@@ -42,3 +42,18 @@ Scenario: Test ROT algorithm on .txt file
 Given a /src/test/bdd/loremCipher.txt file
 When I choose the ROT algorithm with 101 shift
 Then I get the proper cipheredText (sdTXytKFztXY2tKFydTR1NeF2M7ZhcbSytmT)
+
+Scenario: Test Blowfish CBC algorithm on .txt file3
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the Blowfish algorithm with CBC mode and abc password and cGR0Z9YIYg0= iv
+Then I get the proper cipheredText (TkQz7mdmihGEY6diua5Ba7iehvlbxWdhtxBnlUGHgY8=)
+
+Scenario: Test Blowfish ECB algorithm on .txt file3
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the Blowfish algorithm with ECB mode and abc password and cGR0Z9YIYg0= iv
+Then I get the proper cipheredText (2ISUcy+YVYKu4s5OFdqb+R5RJb62cYiCp9ZNq6EloBo=)
+
+Scenario: Test Blowfish CFB algorithm on .txt file3
+Given a /src/test/bdd/loremCipher.txt file
+When I choose the Blowfish algorithm with CFB mode and abc password and cGR0Z9YIYg0= iv
+Then I get the proper cipheredText (c0seOGnp2Ow3sgD3e1EfnkIqGNq3Nwqc3dDwISZsKMU=)
